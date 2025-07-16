@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shanghai High School Sustainability Initiative</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="c1.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+
+        .hero {
+            height: 100vh;
+            background-image: url('01.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-align: left;
+            padding: 40px 20px 40px 100px;
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 0 0 auto;
+            box-sizing: border-box;
+        }
+
+        .logo-title {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 60px;
+            margin: 0;
+            padding: 20px 0;
+            width: 100%;
+        }
+        
+        .title-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            max-width: 800px;
+            padding: 0;
+            flex-shrink: 1;
+        }
+
+        .logo-title img {
+            max-height: 400px;
+            max-width: 700px;
+            width: auto;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            object-position: left center;
+        }
+        
+        .logo-title img:hover {
+            transform: scale(1.05);
+        }
+
+        .title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            line-height: 1.1;
+            margin: 0;
+            text-align: left;
+            padding: 0;
+            letter-spacing: 0.5px;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            margin: 15px 0 0 0;
+            color: rgba(220, 230, 230, 0.95);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            font-weight: 300;
+            line-height: 1.5;
+            text-align: left;
+            max-width: 100%;
+            letter-spacing: 0.3px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 90%;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            margin-top: 1rem;
+        }
+
+        h1 {
+            color: white;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .content-section {
+            padding: 80px 10%;
+            background-color: #fff;
+        }
+
+        .about-section {
+            padding: 80px 20px;
+            background-color: #fff;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .about-content {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #225e31;
+            margin-bottom: 50px;
+            font-weight: 600;
+        }
+        
+        .about-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .about-text {
+            flex: 1 1 45%;
+            max-width: 45%;
+            text-align: left;
+        }
+        
+        .about-text p {
+            color: #333;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin: 0 0 1.5rem 0;
+            text-align: left;
+        }
+        
+        .about-image {
+            flex: 1 1 55%;
+            max-width: 55%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+    .about-img {
+        max-width: 60%;
+        height: auto;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto;
+        transition: transform 0.3s ease;
+    }
+
+    .about-img:hover {
+        transform: scale(1.05);
+    }
+    
+    .gallery-container-stacked {
+        position: relative;
+        width: 600px;
+        height: 400px;
+        margin: 100px auto;
+        transform-style: preserve-3d;
+        perspective: 1000px;
+    }
+        }
+        
+        .gallery-container-stacked {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            margin: 100px auto;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .gallery-image-stacked {
+            position: absolute;
+            width: 80%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: transform 0.5s ease, z-index 0.5s ease;
+        }
+
+        .gallery-image-stacked:nth-child(1) {
+            transform: translateX(-10%) rotateY(15deg) scale(0.9);
+            z-index: 1;
+        }
+
+        .gallery-image-stacked:nth-child(2) {
+            transform: translateX(0) rotateY(0deg) scale(1);
+            z-index: 2;
+        }
+
+        .gallery-image-stacked:nth-child(3) {
+            transform: translateX(10%) rotateY(-15deg) scale(0.9);
+            z-index: 1;
+        }
+
+        .gallery-container-stacked:hover .gallery-image-stacked:nth-child(1) {
+            transform: translateX(-70%) rotateY(0deg) scale(0.9);
+            z-index: 3;
+        }
+
+        .gallery-container-stacked:hover .gallery-image-stacked:nth-child(2) {
+            transform: translateX(0) rotateY(0deg) scale(0.9);
+            z-index: 3;
+        }
+
+        .gallery-container-stacked:hover .gallery-image-stacked:nth-child(3) {
+            transform: translateX(70%) rotateY(0deg) scale(0.9);
+            z-index: 3;
+        }
+
+        .lightbox-overlay-stacked {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .lightbox-image-stacked {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            box-shadow: 0 0 40px rgba(0,0,0,0.5);
+        }
+
+        .close-lightbox-stacked {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: #fff;
+            font-size: 50px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .projects-section {
+            padding: 80px 40px;
+            background-color: #fff;
+            margin-top: 350px;
+        }
+
+        .projects-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            flex: 1 1 360px;
+            max-width: 400px;
+            background-color: #f9f9f9;
+            border: 1px solid #f0f0f0;
+            border-radius: 10px;
+            text-align: center;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .project-card h3 {
+            font-size: 1.7rem;
+            color: #225e31;
+            margin: 0 0 10px 0;
+        }
+
+        .project-card .slogan {
+            font-size: 1rem;
+            color: #555;
+            font-style: italic;
+        }
+
+        .team-section {
+            padding: 80px 40px 40px;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        .team-section h2 {
+            font-size: 2.5rem;
+            color: #225e31;
+            margin-bottom: 60px;
+        }
+
+        .team-subsection {
+            margin-bottom: 50px;
+        }
+
+        .team-subsection h3 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .team-grid {
+            display: flex;
+            justify-content: center;
+            gap: 120px;
+            flex-wrap: wrap;
+        }
+
+        .team-member {
+            flex-basis: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .team-member img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .team-member p {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .contact-info {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid #eee;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            margin: 5px 0;
+        }
+
+        @media (max-width: 1200px) {
+            .book {
+                width: 70vw;
+                height: 60vh;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo-title {
+                flex-direction: column;
+                gap: 20px;
+                padding: 30px 0;
+            }
+
+            .logo-title img {
+                height: 150px;
+                margin: 0 auto;
+            }
+
+            .title {
+                font-size: 2.5rem;
+                text-align: center;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+                max-width: 90%;
+            }
+            
+            .about-container {
+                flex-direction: column;
+                gap: 30px;
+                padding: 20px;
+            }
+            
+            .about-text {
+                padding-right: 0;
+            }
+            
+            .about-image {
+                max-width: 100%;
+                margin-top: 20px;
+            }
+            
+            .book-container {
+                height: 50vh;
+                min-height: 300px;
+                margin: 20px auto;
+            }
+            
+            .book {
+                max-width: 90%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <div class="logo-title">
+                <img src="lg.png?v=1.1" alt="Logo" class="logo">
+                <div class="title-wrapper">
+                    <h1 class="title">Shanghai High School<br>Sustainability Initiative</h1>
+                    <p class="subtitle">Committed to a greener future through education and action</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-section">
+        <div class="about-content">
+            <h2 class="section-title">About Our Initiative</h2>
+            <div class="about-container">
+                <div class="about-text">
+                    <p>Bringing the United Nations' 17 Sustainable Development Goals (SDGs) into campus, this is a student-led initiative promoting sustainable actions in Shanghai. By deeply exploring each of the 17 themes, more than 30 student organizations, clubs and NGOs have engaged in long-term projects including practical workshops, debates, charity sales, exhibitions and tech innovations. This initiative empowers students to connect their original ideas with global sustainability efforts, transforming abstract goals into concrete action to make a difference to our society. Through this hands-on approach, we aim to cultivate global awareness, creative problem-solving, and a strong sense of social responsibility among youth.</p>
+                </div>
+                <div class="about-image">
+                    <img src="02.png" alt="About our initiative" class="about-img" id="aboutImage">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="gallery-container">
+            <div class="gallery-container-stacked">
+                <img src="03.png" alt="Image 3" class="gallery-image-stacked">
+                <img src="04.png" alt="Image 4" class="gallery-image-stacked">
+                <img src="05.png" alt="Image 5" class="gallery-image-stacked">
+            </div>
+
+            <div class="lightbox-overlay-stacked" style="display: none;">
+                <span class="close-lightbox-stacked">&times;</span>
+                <img class="lightbox-image-stacked" src="">
+            </div>
+        </div>
+
+        <section class="projects-section">
+            <div class="projects-grid">
+                <a href="clubs.html" class="project-card">
+                    <img src="p1.png" alt="Clubs in Joint Action">
+                    <h3>Clubs in Joint Action</h3>
+                </a>
+                <div class="project-card">
+                    <img src="p2.png" alt="Herwild">
+                    <h3>Herwild</h3>
+                    <p class="slogan">Together, We Rise Wild.</p>
+                </div>
+                <div class="project-card">
+                    <img src="p3.png" alt="Sparksight">
+                    <h3>Sparksight</h3>
+                </div>
+                <div class="project-card">
+                    <img src="p4.png" alt="The Charity Sale">
+                    <h3>The Charity Sale</h3>
+                </div>
+            </div>
+        </section>
+
+        <section class="team-section">
+            <h2>Meet the Team</h2>
+            <div class="team-subsection">
+                <h3>Founders</h3>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <img src="jr1.png" alt="Kexin (Cathy) Zhu">
+                        <p>Kexin (Cathy) Zhu</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="jr2.png" alt="Shutong (Taby) Bao">
+                        <p>Shutong (Taby) Bao</p>
+                    </div>
+                </div>
+            </div>
+            <div class="team-subsection">
+                <h3>Co-founder</h3>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <img src="jr3.png" alt="Gong (Yvonne) Rui">
+                        <p>Gong (Yvonne) Rui</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <p>Email: phincubator2024@163.com</p>
+                <p>Phone: +86 13512171180</p>
+            </div>
+        </section>
+        <script src="c1.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const galleryImages = document.querySelectorAll('.gallery-image-stacked');
+                const lightboxOverlay = document.querySelector('.lightbox-overlay-stacked');
+                const lightboxImage = document.querySelector('.lightbox-image-stacked');
+                const closeLightbox = document.querySelector('.close-lightbox-stacked');
+
+                galleryImages.forEach(image => {
+                    image.addEventListener('click', () => {
+                        const src = image.getAttribute('src');
+                        lightboxImage.setAttribute('src', src);
+                        lightboxOverlay.style.display = 'flex';
+                    });
+                });
+
+                const closeLight = () => {
+                    lightboxOverlay.style.display = 'none';
+                }
+
+                closeLightbox.addEventListener('click', closeLight);
+                lightboxOverlay.addEventListener('click', (e) => {
+                    if (e.target === lightboxOverlay) {
+                        closeLight();
+                    }
+                });
+            });
+        </script>
+    </div>
+</body>
+</html>
