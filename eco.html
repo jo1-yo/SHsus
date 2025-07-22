@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoQuest Board Game Club - SHSUS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f7f8fa;
+            color: #222;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+            overflow: hidden;
+            min-height: 600px;
+        }
+        .sidebar {
+            width: 270px;
+            background: #f3f4f7;
+            border-right: 1px solid #e0e0e0;
+            padding: 40px 0 40px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .sidebar .back-link {
+            display: block;
+            padding: 10px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #555;
+            text-decoration: none;
+            margin-bottom: 20px;
+            transition: color 0.2s;
+        }
+        .sidebar .back-link:hover {
+            color: #225e31;
+        }
+        .sidebar h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #225e31;
+            margin: 0 0 30px 32px;
+        }
+        .club-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .club-list li {
+            padding: 18px 32px;
+            font-size: 1.08rem;
+            color: #333;
+            cursor: pointer;
+            border-left: 4px solid transparent;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .club-list li.active, .club-list li:hover {
+            background: #e8f5e9;
+            border-left: 4px solid #225e31;
+            color: #225e31;
+            font-weight: 600;
+        }
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            background: #fff;
+            padding: 60px 0;
+            min-height: 600px;
+        }
+        .main-img {
+            width: 100%;
+            max-width: 700px;
+            height: auto;
+            object-fit: cover;
+            border-radius: 0;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+            margin-bottom: 32px;
+        }
+        .desc {
+            max-width: 700px;
+            width: 100%;
+            text-align: left;
+            font-size: 1.08rem;
+            color: #333;
+            line-height: 2.1;
+            padding: 0 20px;
+            margin-bottom: 40px;
+        }
+        .carousel-container {
+            max-width: 700px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #e0e0e0;
+                flex-direction: row;
+                overflow-x: auto;
+                padding: 0;
+            }
+            .club-list {
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+            }
+            .club-list li {
+                padding: 16px 18px;
+                border-left: none;
+                border-bottom: 4px solid transparent;
+            }
+            .club-list li.active, .club-list li:hover {
+                background: #e8f5e9;
+                border-bottom: 4px solid #225e31;
+                border-left: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <a href="index.html" class="back-link">← Back to the Homepage</a>
+            <h2>Clubs in Joint Action</h2>
+            <ul class="club-list">
+                <li><a href="clubs.html" style="color:inherit;text-decoration:none;display:block;width:100%;height:100%;">1. Loomberg Finance Club (Urban Planning Workshop)</a></li>
+                <li><a href="pec.html" style="color:inherit;text-decoration:none;display:block;width:100%;height:100%;">2. PEC Economics Club</a></li>
+                <li><a href="art.html" style="color:inherit;text-decoration:none;display:block;width:100%;height:100%;">3. Art Therapy Club</a></li>
+                <li><a href="rep.html" style="color:inherit;text-decoration:none;display:block;width:100%;height:100%;">4. Reptile Club</a></li>
+                <li><a href="se.html" style="color:inherit;text-decoration:none;display:block;width:100%;height:100%;">5. Selda Geography Club</a></li>
+                <li><a href="girl.html" style="color:inherit;text-decoration:none;display:block;width:100%;height:100%;">6. Girls in STEM</a></li>
+                <li><a href="root.html" style="color:inherit;text-decoration:none;display:block;width:100%;height:100%;">7. Roots & Shoots Organization</a></li>
+                <li class="active">8. EcoQuest Board Game Club</li>
+                <li><a href="soci.html" style="color:inherit;text-decoration:none;display:block;width:100%;height:100%;">9. Sociology Club × World Folk Culture Club</a></li>
+            </ul>
+        </nav>
+        <main class="main-content">
+            <img src="05.png" alt="EcoQuest Board Game Club" class="main-img">
+            <div class="desc">
+                <strong style="font-size:1.25rem;">EcoQuest Board Game Club</strong><br>
+                The club turned sustainability concepts into several engaging board games. The goal is to make SDGs and B Corp “business for good” ideas standout through interactive gameplay. Participants paired up as company leaders, using action cards to make decisions that balanced profit and shared benefits. A “climate crisis wildcard” added excitement, with unexpected events like resource shortages or eco-protests shaking up strategies. The winning team took home a “Sustainability Champion” badge, and everyone got to dive into real B Corp success stories, sparking interesting discussions about what true business success entails.
+            </div>
+            <div class="carousel-container">
+                <div style="position: relative; width: 100%; height: 400px; display: flex; align-items: center; justify-content: center;">
+                    <span id="prevBtn" style="position: absolute; left: -32px; top: 50%; transform: translateY(-50%); font-size: 2.5rem; color: #bbb; cursor: pointer; user-select: none; transition: color 0.2s;">&#60;</span>
+                    <img id="carouselImg" src="81.png" alt="EcoQuest Gameplay" style="width: 100%; height: 100%; object-fit: cover; border-radius: 0; box-shadow: 0 4px 24px rgba(0,0,0,0.10);">
+                    <span id="nextBtn" style="position: absolute; right: -32px; top: 50%; transform: translateY(-50%); font-size: 2.5rem; color: #bbb; cursor: pointer; user-select: none; transition: color 0.2s;">&#62;</span>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        const images = ["81.png", "82.png"];
+        let idx = 0;
+        const img = document.getElementById('carouselImg');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        document.getElementById('prevBtn').onclick = function() {
+            idx = (idx - 1 + images.length) % images.length;
+            img.src = images[idx];
+        };
+        document.getElementById('nextBtn').onclick = function() {
+            idx = (idx + 1) % images.length;
+            img.src = images[idx];
+        };
+
+        prevBtn.onmouseenter = function(){ prevBtn.style.color = '#888'; };
+        prevBtn.onmouseleave = function(){ prevBtn.style.color = '#bbb'; };
+        nextBtn.onmouseenter = function(){ nextBtn.style.color = '#888'; };
+        nextBtn.onmouseleave = function(){ nextBtn.style.color = '#bbb'; };
+    </script>
+</body>
+</html>

@@ -8,107 +8,165 @@
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #f0f2f5;
-            color: #333;
+            background-color: #f7f8fa;
+            color: #222;
             margin: 0;
-            padding: 40px;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+            overflow: hidden;
+            min-height: 600px;
+        }
+        .sidebar {
+            width: 270px;
+            background: #f3f4f7;
+            border-right: 1px solid #e0e0e0;
+            padding: 40px 0 40px 0;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            gap: 0;
         }
-        h1 {
-            font-size: 2.5rem;
-            color: #225e31;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        p.intro {
-            font-size: 1.1rem;
+        .sidebar .back-link {
+            display: block;
+            padding: 10px 32px;
+            font-size: 1rem;
+            font-weight: 600;
             color: #555;
-            max-width: 800px;
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            width: 100%;
-            max-width: 1200px;
-        }
-        .grid-item {
-            background-color: #fff;
-            border: 1px solid #eee;
-            border-radius: 10px;
-            padding: 25px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 150px;
             text-decoration: none;
-            color: inherit;
+            margin-bottom: 20px;
+            transition: color 0.2s;
         }
-        .grid-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.08);
-        }
-        .grid-item h3 {
-            font-size: 1.2rem;
+        .sidebar .back-link:hover {
             color: #225e31;
+        }
+        .sidebar h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #225e31;
+            margin: 0 0 30px 32px;
+        }
+        .club-list {
+            list-style: none;
+            padding: 0;
             margin: 0;
         }
-        .grid-item img {
-            max-width: 80%;
-            max-height: 80px;
-            margin-bottom: 15px;
+        .club-list li {
+            padding: 18px 32px;
+            font-size: 1.08rem;
+            color: #333;
+            cursor: pointer;
+            border-left: 4px solid transparent;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .club-list li.active, .club-list li:hover {
+            background: #e8f5e9;
+            border-left: 4px solid #225e31;
+            color: #225e31;
+            font-weight: 600;
+        }
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            min-height: 600px;
+        }
+        .main-content img {
+            max-width: 90%;
+            max-height: 520px;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+            object-fit: cover;
         }
         @media (max-width: 900px) {
-            .grid-container {
-                grid-template-columns: repeat(2, 1fr);
+            .container {
+                flex-direction: column;
             }
-        }
-        @media (max-width: 600px) {
-            .grid-container {
-                grid-template-columns: 1fr;
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #e0e0e0;
+                flex-direction: row;
+                overflow-x: auto;
+                padding: 0;
+            }
+            .club-list {
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+            }
+            .club-list li {
+                padding: 16px 18px;
+                border-left: none;
+                border-bottom: 4px solid transparent;
+            }
+            .club-list li.active, .club-list li:hover {
+                background: #e8f5e9;
+                border-bottom: 4px solid #225e31;
+                border-left: none;
             }
         }
     </style>
 </head>
 <body>
-    <h1>Clubs in Joint Action</h1>
-    <p class="intro">Collaborating with 10 clubs and student organizations, this initiative aims to promote sustainable practices environmentally, economically and socially, attracting more than 500 participants.</p>
-    <div class="grid-container">
-        <a href="loomberg.html" class="grid-item">
-            <h3>1. Loomberg Finance Club (Urban Planning Workshop)</h3>
-        </a>
-        <a href="#" class="grid-item">
-            <h3>2. PEC Economics Club</h3>
-        </a>
-        <a href="#" class="grid-item">
-            <h3>3. Art Therapy Club</h3>
-        </a>
-        <a href="#" class="grid-item">
-            <h3>4. Reptile Club</h3>
-        </a>
-        <a href="#" class="grid-item">
-            <h3>5. Selda Geography Club</h3>
-        </a>
-        <a href="#" class="grid-item">
-            <h3>6. Girls in STEM</h3>
-        </a>
-        <a href="#" class="grid-item">
-            <h3>7. Roots & shoots organization</h3>
-        </a>
-        <a href="#" class="grid-item">
-            <h3>8. Project 8 (Placeholder)</h3>
-        </a>
-        <a href="#" class="grid-item">
-            <h3>9. Sociology Club × World Folk Culture Club</h3>
-        </a>
+    <div class="container">
+        <nav class="sidebar">
+            <a href="index.html" class="back-link">← Back to the Homepage</a>
+            <h2>Clubs in Joint Action</h2>
+            <ul class="club-list">
+                <li class="active">1. Loomberg Finance Club (Urban Planning Workshop)</li>
+                <li><a href="pec.html" style="color:inherit;text-decoration:none;display:block;width:100%;height:100%;">2. PEC Economics Club</a></li>
+                <li><a href="art.html" style="color:inherit;text-decoration:none;display:block;width:100%;height:100%;">3. Art Therapy Club</a></li>
+                <li><a href="rep.html" style="color:inherit;text-decoration:none;display:block;width:100%;height:100%;">4. Reptile Club</a></li>
+                <li><a href="se.html" style="color:inherit;text-decoration:none;display:block;width:100%;height:100%;">5. Selda Geography Club</a></li>
+                <li><a href="girl.html" style="color:inherit;text-decoration:none;display:block;width:100%;height:100%;">6. Girls in STEM</a></li>
+                <li><a href="root.html" style="color:inherit;text-decoration:none;display:block;width:100%;height:100%;">7. Roots & Shoots Organization</a></li>
+                <li><a href="eco.html" style="color:inherit;text-decoration:none;display:block;width:100%;height:100%;">8. EcoQuest Board Game Club</a></li>
+                <li><a href="soci.html" style="color:inherit;text-decoration:none;display:block;width:100%;height:100%;">9. Sociology Club × World Folk Culture Club</a></li>
+            </ul>
+        </nav>
+        <main class="main-content" style="display: block; padding: 0;">
+            <div id="carousel" style="max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; width: 100%;">
+                <div style="height: 60px;"></div>
+                <div style="position: relative; width: 100%; height: 400px; display: flex; align-items: center; justify-content: center; margin-bottom: 32px;">
+                    <span id="prevBtn" style="position: absolute; left: -32px; top: 50%; transform: translateY(-50%); font-size: 2.5rem; color: #bbb; cursor: pointer; user-select: none; transition: color 0.2s;">&#60;</span>
+                    <img id="carouselImg" src="11.png" alt="Loomberg Finance Club" style="width: 100%; height: 100%; object-fit: cover; border-radius: 0; box-shadow: 0 4px 24px rgba(0,0,0,0.10);">
+                    <span id="nextBtn" style="position: absolute; right: -32px; top: 50%; transform: translateY(-50%); font-size: 2.5rem; color: #bbb; cursor: pointer; user-select: none; transition: color 0.2s;">&#62;</span>
+                </div>
+                <div style="margin-bottom: 60px; max-width: 700px; width: 100%; text-align: left; font-size: 1.08rem; color: #333; line-height: 2.1; padding: 0 0px;">
+                    <strong style="font-size:1.25rem;">Loomberg Finance Club (Urban Planning Workshop)</strong><br>
+                    Partnering with UrbanPlan, a course jointly developed by the Urban Land Institute (ULI) of the United States and UC Berkeley, Loomberg Finance Club has provided students with immersive simulation experiences of urban planning and community renewal. Participants worked in teams through role-playing, taking on roles such as financial directors, urban planners, and market advisors, to learn how to balance the interests of the economy, society, and the environment, and formulate sustainable development solutions. Team members also explored how financial decisions could shape sustainable cities, turning urban planning into an engaging exercise in balancing economic, social, and environmental needs.<br><br>
+                    Participants took on roles like city planners and green investment heads, tasked with revamping a virtual neighborhood. Choices had impacts, such as cutting down trees harming biodiversity. A mid-event “community survey” revealed local needs, forcing teams to adjust their plans. The team with the most balanced, thriving city was awarded a mini trophy, and everyone got insights into real sustainable urban projects.
+                </div>
+            </div>
+        </main>
     </div>
+    <script>
+const images = ["11.png", "12.png", "13.png", "14.png", "15.png"];
+let idx = 0;
+const img = document.getElementById('carouselImg');
+document.getElementById('prevBtn').onclick = function() {
+    idx = (idx - 1 + images.length) % images.length;
+    img.src = images[idx];
+};
+document.getElementById('nextBtn').onclick = function() {
+    idx = (idx + 1) % images.length;
+    img.src = images[idx];
+};
+// 鼠标悬停时按钮变深色
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+prevBtn.onmouseenter = function(){ prevBtn.style.color = '#888'; };
+prevBtn.onmouseleave = function(){ prevBtn.style.color = '#bbb'; };
+nextBtn.onmouseenter = function(){ nextBtn.style.color = '#888'; };
+nextBtn.onmouseleave = function(){ nextBtn.style.color = '#bbb'; };
+</script>
 </body>
 </html>

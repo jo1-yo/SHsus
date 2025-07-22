@@ -22,7 +22,7 @@
             overflow-x: hidden;
             margin: 0;
             padding: 0;
-            background-color: #fff;
+            background-color: #fff; /* Uniform white background */
         }
 
         .hero {
@@ -145,21 +145,37 @@
         }
 
         .content-section {
+            html, body {
+                background: #ffffff !important;
+                background-color: #ffffff !important;
+                background-image: none !important;
+            }
+            
+            .content-section {
+                background: #ffffff !important;
+                background-color: #ffffff !important;
+                background-image: none !important;
+            }
+            
+            .about-container {
+                background: #ffffff !important;
+                background-color: #ffffff !important;
+                background-image: none !important;
+                box-shadow: none !important;
+                border-radius: 0 !important;
+            }
+            
+            .about-section {
+                background: #ffffff !important;
+                background-color: #ffffff !important;
+                background-image: none !important;
+            }
             padding: 80px 10%;
-            background-color: #fff;
+            background-color: #fff; /* Uniform white background */
         }
 
         .about-section {
-            padding: 80px 20px;
-            background-color: #fff;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        
-        .about-content {
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
+            padding: 80px 40px;
         }
         
         .section-title {
@@ -172,68 +188,91 @@
         
         .about-container {
             display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            gap: 50px;
-            width: 100%;
-            max-width: 1400px;
+            align-items: center; /* Vertically center align the columns */
+            gap: 60px; /* Increase gap between columns */
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 40px;
-            box-sizing: border-box;
+        }
+
+        .left-column {
+            flex-basis: 45%;
+            display: flex;
+            flex-direction: column;
         }
 
         .about-text {
-            flex: 1 1 45%;
-            max-width: 45%;
-            text-align: left;
+            margin-bottom: 30px;
         }
         
         .about-text p {
             color: #333;
             font-size: 1.1rem;
             line-height: 1.8;
-            margin: 0 0 1.5rem 0;
-            text-align: left;
         }
-        
-        .about-image {
-            flex: 1 1 55%;
-            max-width: 55%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
 
-    .about-img {
-        max-width: 60%;
+    .right-column {
+        flex-basis: 55%;
+        margin-top: 0; /* Reset margin */
+    }
+
+    .right-side-image {
+        width: 100%;
         height: auto;
-        object-fit: contain;
-        display: block;
-        margin: 0 auto;
+        transform: rotate(8deg); /* Re-apply and adjust rotation */
         transition: transform 0.3s ease;
     }
 
-    .about-img:hover {
-        transform: scale(1.05);
+    .right-side-image:hover {
+        transform: rotate(0deg) scale(1.05);
+    }
+
+
+
+    .bottom-image-section {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 60px 0;
+        padding: 0 40px;
+    }
+
+    .bottom-large-image {
+        width: 70%;
+        max-width: 800px;
+        height: auto;
+        object-fit: contain;
+        border-radius: 20px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        background-image: url('02.png');
+        background-size: cover;
+        background-position: center;
+    }
+
+    .bottom-image:hover {
+        transform: scale(1.03);
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+    }
+
+    .bottom-image-container {
+        text-align: center;
+        margin-top: 50px;
+        padding: 0 20px;
+    }
+
+    .bottom-image {
+        display: block;
+        margin: 30px 0 0 0; /* Adjust margin to position below text */
+        max-width: 100%; /* Allow it to take full width of the column */
+        height: auto;
     }
     
-    .gallery-container-stacked {
-        position: relative;
-        width: 600px;
-        height: 400px;
-        margin: 100px auto;
-        transform-style: preserve-3d;
-        perspective: 1000px;
-    }
-        }
-        
-        .gallery-container-stacked {
-            position: relative;
-            width: 600px;
-            height: 400px;
-            margin: 100px auto;
-            transform-style: preserve-3d;
-            perspective: 1000px;
+
+
+        .gallery-image-single:hover {
+            transform: scale(1.05);
         }
 
         .gallery-image-stacked {
@@ -308,44 +347,97 @@
             cursor: pointer;
         }
 
+        .lightbox-overlay-single {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .lightbox-image-single {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .close-lightbox-single {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-lightbox-single:hover {
+            color: #ccc;
+        }
+
         .projects-section {
-            padding: 80px 40px;
-            background-color: #fff;
-            margin-top: 350px;
+            padding: 4rem 2rem;
+            background-color: #ffffff !important;
+            margin-top: 3cm; /* 下移3cm */
         }
 
         .projects-grid {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 4rem;
             max-width: 1600px;
             margin: 0 auto;
         }
+        
+        /* Responsive layout for smaller screens */
+        @media (max-width: 1200px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
 
         .project-card {
-            flex: 1 1 360px;
-            max-width: 400px;
-            background-color: #f9f9f9;
-            border: 1px solid #f0f0f0;
-            border-radius: 10px;
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+            border-radius: 15px;
+            padding: 1.5rem;
             text-align: center;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             text-decoration: none;
         }
 
         .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+            transform: translateY(-6px);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+        }
+
+        /* 移除Clubs in Joint Action的下划线 */
+        .project-card[href="clubs.html"] {
+            text-decoration: none !important;
+        }
+        
+        .project-card[href="clubs.html"] h3 {
+            text-decoration: none !important;
         }
 
         .project-card img {
             width: 100%;
-            height: 280px;
+            height: 250px;
             object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            border-radius: 0; /* No rounded corners for images */
+            margin-bottom: 1.5rem;
         }
 
         .project-card h3 {
@@ -411,21 +503,31 @@
             font-weight: 500;
         }
 
+        footer {
+            background: linear-gradient(to bottom, #225e31, #1a3a24);
+            color: #fff;
+            text-align: center;
+            padding: 80px 20px 40px;
+            position: relative;
+            clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%);
+        }
+
         .contact-info {
-            margin-top: 60px;
-            padding-top: 40px;
-            border-top: 1px solid #eee;
+            /* Styles moved to footer */
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
         }
 
         .contact-info h3 {
             font-size: 1.8rem;
-            color: #333;
+            color: #fff;
             margin-bottom: 20px;
         }
 
         .contact-info p {
             font-size: 1.1rem;
-            color: #555;
+            color: #eee;
             line-height: 1.8;
             margin: 5px 0;
         }
@@ -437,7 +539,9 @@
             }
         }
 
-        @media (max-width: 768px) {
+
+
+@media (max-width: 768px) {
             .logo-title {
                 flex-direction: column;
                 gap: 20px;
@@ -509,113 +613,99 @@
         </div>
     </div>
 
-    <div class="about-section">
-        <div class="about-content">
-            <h2 class="section-title">About Our Initiative</h2>
-            <div class="about-container">
-                <div class="about-text">
-                    <p>Bringing the United Nations' 17 Sustainable Development Goals (SDGs) into campus, this is a student-led initiative promoting sustainable actions in Shanghai. By deeply exploring each of the 17 themes, more than 30 student organizations, clubs and NGOs have engaged in long-term projects including practical workshops, debates, charity sales, exhibitions and tech innovations. This initiative empowers students to connect their original ideas with global sustainability efforts, transforming abstract goals into concrete action to make a difference to our society. Through this hands-on approach, we aim to cultivate global awareness, creative problem-solving, and a strong sense of social responsibility among youth.</p>
-                </div>
-                <div class="about-image">
-                    <img src="02.png" alt="About our initiative" class="about-img" id="aboutImage">
-                </div>
+    <div class="about-section" style="margin: 100px 0 0 0; padding: 0; width: 100%; max-width: 100%; overflow: hidden;">
+        <img src="th.png" alt="About Our Initiative" style="width: 100%; height: auto; display: block; max-width: 100%;">
+    </div>
 
-            </div>
-        </div>
-
-        <div class="gallery-container">
-            <div class="gallery-container-stacked">
-                <img src="03.png" alt="Image 3" class="gallery-image-stacked">
-                <img src="04.png" alt="Image 4" class="gallery-image-stacked">
-                <img src="05.png" alt="Image 5" class="gallery-image-stacked">
-            </div>
-
-            <div class="lightbox-overlay-stacked" style="display: none;">
-                <span class="close-lightbox-stacked">&times;</span>
-                <img class="lightbox-image-stacked" src="">
-            </div>
-        </div>
-
-        <section class="projects-section">
-            <div class="projects-grid">
-                <a href="clubs.html" class="project-card">
-                    <img src="p1.png" alt="Clubs in Joint Action">
-                    <h3>Clubs in Joint Action</h3>
+    <section class="projects-section" style="margin: 100px auto 0 auto; padding-top: 2rem; max-width: 1200px; display: flex; flex-direction: column; align-items: center;">
+        <div class="custom-gallery">
+            <div>
+                <a href="clubs.html">
+                  <img src="p1.png" alt="Clubs in Joint Action" class="gallery-img pure-img">
                 </a>
-                <div class="project-card">
-                    <img src="p2.png" alt="Herwild">
-                    <h3>Herwild</h3>
-                    <p class="slogan">Together, We Rise Wild.</p>
+                <div class="caption"><a href="clubs.html" style="color:inherit;text-decoration:none;">Clubs in Joint Action</a></div>
+            </div>
+            <div>
+                <a href="herwild.html" style="color:inherit;text-decoration:none;">
+                    <img src="p2.png" alt="Herwild" class="gallery-img pure-img">
+                </a>
+                <div class="caption"><a href="herwild.html" style="color:inherit;text-decoration:none;">Herwild</a></div>
+            </div>
+            <div>
+                <a href="sparksight.html" style="color:inherit;text-decoration:none;">
+                    <img src="p3.png" alt="Sparksight" class="gallery-img pure-img">
+                </a>
+                <div class="caption"><a href="sparksight.html" style="color:inherit;text-decoration:none;">Sparksight</a></div>
+            </div>
+            <div>
+                <a href="charitysale.html" style="color:inherit;text-decoration:none;">
+                    <img src="p4.png" alt="The Charity Sale" class="gallery-img pure-img">
+                </a>
+                <div class="caption"><a href="charitysale.html" style="color:inherit;text-decoration:none;">The Charity Sale</a></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section" style="margin-top: 0;">
+        <h2>Meet the Team</h2>
+        <div class="team-subsection">
+            <h3>Founders</h3>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="jr1.png" alt="Kexin (Cathy) Zhu">
+                    <p>Kexin (Cathy) Zhu</p>
                 </div>
-                <div class="project-card">
-                    <img src="p3.png" alt="Sparksight">
-                    <h3>Sparksight</h3>
-                </div>
-                <div class="project-card">
-                    <img src="p4.png" alt="The Charity Sale">
-                    <h3>The Charity Sale</h3>
+                <div class="team-member">
+                    <img src="jr2.png" alt="Shutong (Taby) Bao">
+                    <p>Shutong (Taby) Bao</p>
                 </div>
             </div>
-        </section>
-
-        <section class="team-section">
-            <h2>Meet the Team</h2>
-            <div class="team-subsection">
-                <h3>Founders</h3>
-                <div class="team-grid">
-                    <div class="team-member">
-                        <img src="jr1.png" alt="Kexin (Cathy) Zhu">
-                        <p>Kexin (Cathy) Zhu</p>
-                    </div>
-                    <div class="team-member">
-                        <img src="jr2.png" alt="Shutong (Taby) Bao">
-                        <p>Shutong (Taby) Bao</p>
-                    </div>
+        </div>
+        <div class="team-subsection">
+            <h3>Co-founder</h3>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="jr3.png" alt="Gong (Yvonne) Rui">
+                    <p>Gong (Yvonne) Rui</p>
                 </div>
             </div>
-            <div class="team-subsection">
-                <h3>Co-founder</h3>
-                <div class="team-grid">
-                    <div class="team-member">
-                        <img src="jr3.png" alt="Gong (Yvonne) Rui">
-                        <p>Gong (Yvonne) Rui</p>
-                    </div>
-                </div>
-            </div>
-            <div class="contact-info">
-                <h3>Contact Information</h3>
-                <p>Email: phincubator2024@163.com</p>
-                <p>Phone: +86 13512171180</p>
-            </div>
-        </section>
-        <script src="c1.js"></script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const galleryImages = document.querySelectorAll('.gallery-image-stacked');
-                const lightboxOverlay = document.querySelector('.lightbox-overlay-stacked');
-                const lightboxImage = document.querySelector('.lightbox-image-stacked');
-                const closeLightbox = document.querySelector('.close-lightbox-stacked');
+        </div>
+    </section>
 
-                galleryImages.forEach(image => {
-                    image.addEventListener('click', () => {
-                        const src = image.getAttribute('src');
-                        lightboxImage.setAttribute('src', src);
-                        lightboxOverlay.style.display = 'flex';
-                    });
-                });
+    <footer style="margin-top: 0; background: #fff; color: #111;">
+        <div class="contact-info">
+            <h3>Contact Information</h3>
+            <p>Email: phincubator2024@163.com</p>
+            <p>Phone: +86 13512171180</p>
+        </div>
+    </footer>
+    <script src="c1.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const galleryImages = document.querySelectorAll('.gallery-image-stacked');
+            const lightboxOverlay = document.querySelector('.lightbox-overlay-stacked');
+            const lightboxImage = document.querySelector('.lightbox-image-stacked');
+            const closeLightbox = document.querySelector('.close-lightbox-stacked');
 
-                const closeLight = () => {
-                    lightboxOverlay.style.display = 'none';
-                }
-
-                closeLightbox.addEventListener('click', closeLight);
-                lightboxOverlay.addEventListener('click', (e) => {
-                    if (e.target === lightboxOverlay) {
-                        closeLight();
-                    }
+            galleryImages.forEach(image => {
+                image.addEventListener('click', () => {
+                    const src = image.getAttribute('src');
+                    lightboxImage.setAttribute('src', src);
+                    lightboxOverlay.style.display = 'flex';
                 });
             });
-        </script>
-    </div>
+
+            const closeLight = () => {
+                lightboxOverlay.style.display = 'none';
+            }
+
+            closeLightbox.addEventListener('click', closeLight);
+            lightboxOverlay.addEventListener('click', (e) => {
+                if (e.target === lightboxOverlay) {
+                    closeLight();
+                }
+            });
+        });
+    </script>
 </body>
 </html>

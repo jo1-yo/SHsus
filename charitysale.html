@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charity Sale - Product Gallery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fff5f7;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .back-arrow {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            font-size: 24px;
+            color: #d23f7a;
+            text-decoration: none;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(210, 63, 122, 0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .back-arrow:hover {
+            transform: translateX(-5px);
+            background: #225e31;
+            color: white;
+        }
+
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+            position: relative;
+        }
+
+        .gallery-title {
+            text-align: center;
+            color: #d23f7a;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .gallery-title:after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 3px;
+            bottom: -10px;
+            left: 20%;
+            background: linear-gradient(90deg, transparent, #ff8fab, transparent);
+        }
+
+        .product-slide {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .product-slide.active {
+            display: flex;
+        }
+
+        .product-image-container {
+            width: 100%;
+            margin: 0 0 40px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .product-image {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            max-height: 85vh;
+            object-fit: contain;
+            display: block;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 0;
+            transform: perspective(1000px) rotateX(5deg);
+            transform-origin: bottom;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 0 auto;
+        }
+
+        .product-image:hover {
+            transform: perspective(1000px) rotateX(5deg) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-info {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px 40px;
+        }
+
+        .product-name {
+            color: #d23f7a;
+            font-size: 1.8rem;
+            margin: 20px 0 10px;
+            font-weight: 600;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .product-name-main {
+            display: block;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .product-name-sub {
+            display: block;
+            font-size: 0.9em;
+            font-weight: 500;
+            color: #e67e9f;
+        }
+
+        .product-description {
+            color: #7a4a5a;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin: 0 auto;
+            max-width: 700px;
+            text-align: center;
+            padding: 0 30px;
+            font-weight: 400;
+        }
+
+        .product-navigation {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 30px;
+            pointer-events: none;
+            z-index: 10;
+            transform: translateY(-50%);
+        }
+
+        .nav-arrow {
+            background: none;
+            color: #d23f7a;
+            border: none;
+            width: 40px;
+            height: 80px;
+            font-size: 32px;
+            font-weight: 300;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            pointer-events: all;
+            opacity: 0.7;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-arrow:hover {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        .nav-arrow:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none;
+            pointer-events: none;
+        }
+
+        .product-counter {
+            display: flex;
+            justify-content: center;
+            margin: 60px 0 20px;
+            font-size: 1rem;
+            color: #e67e9f;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0.5; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 1024px) {
+            .product-image {
+                max-height: 65vh;
+            }
+            
+            .product-name {
+                font-size: 1.6rem;
+                padding: 0 20px;
+            }
+            
+            .product-description {
+                font-size: 1rem;
+                padding: 0 25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .back-arrow {
+                top: 15px;
+                left: 15px;
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+
+            .gallery-title {
+                font-size: 2rem;
+                margin-bottom: 30px;
+                padding: 0 20px;
+            }
+
+            .product-image-container {
+                width: 100%;
+                padding: 0;
+                margin-bottom: 30px;
+            }
+
+            .product-image {
+                max-height: 60vh;
+                transform: perspective(800px) rotateX(5deg);
+            }
+
+            .product-info {
+                padding: 0 15px 30px;
+            }
+
+            .product-name {
+                font-size: 1.5rem;
+                margin: 15px 0 10px;
+                padding: 0 15px;
+            }
+
+            .product-description {
+                font-size: 1rem;
+                padding: 0 20px;
+            }
+
+            .nav-arrow {
+                width: 30px;
+                height: 60px;
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-image {
+                max-height: 50vh;
+                transform: perspective(600px) rotateX(5deg);
+            }
+            
+            .product-name-main {
+                font-size: 1.1em;
+            }
+            
+            .product-name-sub {
+                font-size: 0.85em;
+            }
+
+            .product-name {
+                font-size: 1.4rem;
+            }
+
+            .product-description {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-arrow">←</a>
+    
+    <div class="gallery-container">
+        <h1 class="gallery-title">Charity Sale Gallery</h1>
+        
+        <!-- Product slides will be added by JavaScript -->
+        <div id="productContainer"></div>
+        
+        <div class="product-navigation">
+            <button class="nav-arrow" id="prevBtn" aria-label="Previous product">&lt;</button>
+            <button class="nav-arrow" id="nextBtn" aria-label="Next product">&gt;</button>
+        </div>
+        <div class="product-counter" id="productCounter">1 / 10</div>
+    </div>
+
+    <script>
+        // Product data
+        const products = [
+            {
+                id: 1,
+                name: "Lotus & Cattail Under Pine Shade – Rebirth Keychain",
+                description: "Inspired by the quiet resilience of nature, the Rebirth Keychain blends the purity of lotus, the grace of cattails, and the tranquility of pine shade into a sustainable design that symbolizes renewal and inner peace. Each keychain is crafted with eco-friendly materials, reflecting our commitment to both style and sustainability. Carry it with you as a reminder that even in stillness, growth is always possible.",
+                image: "jw1.png"
+            },
+            {
+                id: 2,
+                name: "Lotus & Cattail Under Pine Shade – Rebirth Notebook",
+                description: "Rooted in the quiet beauty of nature, the Rebirth Notebook draws inspiration from the lotus's purity, the cattail's resilience, and the pine's enduring shade. It is a space for reflection, creativity, and renewal—each page inviting you to grow gently, like life beneath still waters. Made with sustainable, eco-friendly materials, this notebook is not only kind to the planet but also a reminder to live intentionally and write mindfully. Whether you're journaling, sketching, or capturing ideas, let this notebook accompany your journey of new beginnings.",
+                image: "jw2.png"
+            },
+            {
+                id: 3,
+                name: "Lotus & Cattail Under Pine Shade – Rebirth Frisbee",
+                description: "More than just a game—this Rebirth Frisbee carries the spirit of lotus calmness, cattail resilience, and pine shade serenity. It brings together nature's symbolism and outdoor energy, encouraging balance between movement and mindfulness. Crafted from eco-friendly, recyclable materials, this frisbee reflects our belief in sustainable play. Whether you're on a campus lawn or in the wild, let every throw remind you: rebirth is in every breath, every moment, every flight.",
+                image: "jw3.png"
+            },
+            {
+                id: 4,
+                name: "Lotus & Cattail Under Pine Shade – Rebirth Handkerchief",
+                description: "Soft as pine shade, light as a lotus petal, and as enduring as cattails by the water, the Rebirth Handkerchief is a gentle companion for daily life. Designed with natural motifs and sustainable materials, this eco-friendly square scarf carries the essence of renewal, elegance, and quiet strength. Use it as a fashion statement, a daily essential, or a mindful reminder of your connection to nature. With every fold, it tells a story of stillness and new beginnings.",
+                image: "jw4.png"
+            },
+            {
+                id: 5,
+                name: "Keychain Shopping Bag",
+                description: "Although small in size, this Keychain Shopping Bag is a clever fusion of convenience and sustainability. Designed to fold neatly into a compact keychain, it's easy to carry and always ready for use, replacing single-use plastic bags with style and ease. Crafted from durable, eco-friendly materials, it's perfect for spontaneous shopping trips, daily errands, or travel. Clip it to your keys, backpack, or purse and stay prepared to shop sustainably, anytime, anywhere.",
+                image: "jw5.png"
+            },
+            {
+                id: 6,
+                name: "Recycled ABS Pen",
+                description: "This Recycled ABS Pen is made from reprocessed ABS plastic, giving new life to old materials. Designed for smooth writing and everyday durability, it's a small tool with a big message: sustainability starts with the choices we make, even in the details. Whether you're jotting down ideas or taking notes in class, this pen proves that eco-conscious design can be both practical and inspiring. Carry it as a reminder that every word you write can help shape a greener future.",
+                image: "jw6.png"
+            },
+            {
+                id: 7,
+                name: "Eco-Friendly Tote Bag",
+                description: "The Eco-Friendly Tote Bag is your perfect everyday companion. Made from environmentally friendly materials, it's designed to reduce waste and replace disposable bags with a long-lasting, stylish alternative. Whether you're heading to the market, class, or a weekend outing, this tote carries your essentials and your commitment to a greener planet. Choose reusable. Choose responsible. Carry change with you.",
+                image: "jw7.png"
+            },
+            {
+                id: 8,
+                name: "Eco-Friendly PP Travel Cup",
+                description: "Designed for life on the go, the Eco-Friendly PP Travel Cup is made from sustainable polypropylene (PP)—a lightweight, durable, and recyclable material that helps reduce single-use plastic waste. Perfect for your daily coffee, tea, or water, this cup keeps your drinks close and your impact low. With a minimalist design and eco-conscious core, it's more than a cup—it's a statement. Sip sustainably, wherever you are.",
+                image: "jw8.png"
+            },
+            {
+                id: 9,
+                name: "Coffee Grounds Mug",
+                description: "This Coffee Grounds Mug is made using recycled coffee grounds, giving a second life to your morning brew. With its natural texture and earthy tones, it combines sustainability with everyday function. Lightweight, durable, and uniquely eco-friendly, this mug turns waste into warmth.",
+                image: "jw9.png"
+            },
+            {
+                id: 10,
+                name: "Waterproof Toiletry Bag",
+                description: "Designed for convenience and durability, the Waterproof Toiletry Bag keeps your essentials organized and protected, whether you're at the gym, traveling, or on a weekend getaway. Made from water-resistant, eco-conscious materials, this bag is built to handle splashes and spills while reducing environmental impact. With smart compartments and a sleek design, it's the perfect companion for a tidy and sustainable lifestyle on the go.",
+                image: "jw10.png"
+            }
+        ];
+
+        // DOM elements
+        const productContainer = document.getElementById('productContainer');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const productCounter = document.getElementById('productCounter');
+        
+        let currentSlide = 0;
+
+        // Initialize the gallery
+        function initGallery() {
+            // Create slides
+            products.forEach((product, index) => {
+                const slide = document.createElement('div');
+                slide.className = `product-slide ${index === 0 ? 'active' : ''}`;
+                // Split the name into main title and subtitle
+                const nameParts = product.name.split(' – ');
+                const mainTitle = nameParts[0];
+                const subTitle = nameParts.length > 1 ? nameParts[1] : '';
+                
+                slide.innerHTML = `
+                    <div class="product-image-container">
+                        <img src="${product.image}" alt="${product.name}" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h2 class="product-name">
+                            <span class="product-name-main">${mainTitle}</span>
+                            ${subTitle ? `<span class="product-name-sub">${subTitle}</span>` : ''}
+                        </h2>
+                        <p class="product-description">${product.description}</p>
+                    </div>
+                `;
+                productContainer.appendChild(slide);
+            });
+
+            updateButtons();
+            updateCounter();
+        }
+
+        // Show slide
+        function showSlide(index) {
+            const slides = document.querySelectorAll('.product-slide');
+            if (index >= slides.length) {
+                currentSlide = 0;
+            } else if (index < 0) {
+                currentSlide = slides.length - 1;
+            } else {
+                currentSlide = index;
+            }
+
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === currentSlide);
+            });
+
+            updateButtons();
+            updateCounter();
+        }
+
+        // Update navigation buttons
+        function updateButtons() {
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === products.length - 1;
+        }
+
+        // Update product counter
+        function updateCounter() {
+            productCounter.textContent = `${currentSlide + 1} / ${products.length}`;
+        }
+
+        // Event listeners
+        prevBtn.addEventListener('click', () => {
+            showSlide(currentSlide - 1);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            showSlide(currentSlide + 1);
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                showSlide(currentSlide - 1);
+            } else if (e.key === 'ArrowRight') {
+                showSlide(currentSlide + 1);
+            }
+        });
+
+        // Touch swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, false);
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, false);
+
+        function handleSwipe() {
+            const swipeThreshold = 50; // Minimum distance for a swipe
+            const swipeDiff = touchStartX - touchEndX;
+
+            if (Math.abs(swipeDiff) > swipeThreshold) {
+                if (swipeDiff > 0) {
+                    // Swipe left - go to next
+                    showSlide(currentSlide + 1);
+                } else {
+                    // Swipe right - go to previous
+                    showSlide(currentSlide - 1);
+                }
+            }
+        }
+
+        // Initialize the gallery when the page loads
+        window.addEventListener('load', initGallery);
+    </script>
+</body>
+</html>

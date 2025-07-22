@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sparksight - SHSUS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fff;
+            color: #222;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .back-link {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #555;
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: color 0.2s;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+        .back-link:hover {
+            color: #225e31;
+            border-color: #225e31;
+        }
+        .image-container {
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .main-image {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            border-radius: 0;
+            box-shadow: none;
+        }
+        .description {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 40px;
+            font-size: 1.2rem;
+            line-height: 2;
+            color: #333;
+            text-align: justify;
+            column-count: 2;
+            column-gap: 60px;
+            hyphens: auto;
+        }
+        
+        @media (max-width: 900px) {
+            .description {
+                column-count: 1;
+                padding: 0 20px;
+            }
+        }
+        .stats-section {
+            margin: 80px auto;
+            max-width: 1200px;
+            text-align: center;
+        }
+        
+        .stats-section h2 {
+            color: #225e31;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+        }
+        
+        .stats-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .stat-item {
+            margin-bottom: 30px;
+        }
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .progress-container {
+            width: 100%;
+            height: 30px;
+            background-color: #f0f0f0;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #8BC34A);
+            border-radius: 15px;
+            transition: width 1.5s ease-in-out;
+            display: flex;
+            align-items: center;
+            padding-right: 15px;
+            justify-content: flex-end;
+            color: white;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .main-image {
+                max-width: 95%;
+            }
+            .description {
+                padding: 0 20px;
+                font-size: 1rem;
+            }
+        }
+        /* Carousel Styles - Matching Herwild */
+        .carousel-section {
+            margin: 80px 0;
+            padding: 40px 0;
+        }
+        
+        .carousel-section h2 {
+            text-align: center;
+            color: #225e31;
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+        }
+        
+        .artisan-carousel {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        
+        .carousel-container {
+            display: flex;
+            transition: transform 0.5s ease;
+            padding: 10px 0;
+        }
+        
+        .carousel-slide {
+            min-width: calc(50% - 40px);
+            margin: 0 20px;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .carousel-slide:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+        
+        .artisan-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: #fff;
+            min-height: 350px;
+        }
+        
+        .artisan-image img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+        
+        .artisan-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .carousel-slide:hover .artisan-image img {
+            transform: scale(1.05);
+        }
+        
+        .artisan-info {
+            padding: 30px;
+        }
+        
+        .artisan-info h3 {
+            margin: 0 0 15px;
+            color: #225e31;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .artisan-info p {
+            margin: 0;
+            color: #444;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            color: #225e31;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-arrow:hover {
+            background: #225e31;
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .carousel-arrow.prev {
+            left: 20px;
+        }
+        
+        .carousel-arrow.next {
+            right: 20px;
+        }
+        
+        @media (max-width: 1200px) {
+            .carousel-slide {
+                min-width: calc(50% - 40px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .carousel-slide {
+                min-width: calc(100% - 40px);
+            }
+            .artisan-image {
+                height: 300px;
+            }
+        }
+        
+        /* Video Section */
+        .video-section {
+            margin: 80px auto;
+            max-width: 1200px;
+            padding: 0 20px;
+            text-align: center;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+        
+        .video-container video {
+            width: 100%;
+            display: block;
+            background: #000;
+        }
+        
+        /* Team Section */
+        .team-section {
+            max-width: 900px;
+            margin: 80px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        
+        .team-section h2 {
+            color: #225e31;
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+        }
+        
+        .team-category {
+            margin-bottom: 40px;
+        }
+        
+        .team-category h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .team-members {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .carousel-slide {
+                min-width: calc(100% - 30px);
+            }
+            
+            .carousel-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .main-image {
+                max-width: 100%;
+                max-height: 60vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Homepage</a>
+        
+        <div class="image-container">
+            <img src="s1.png" alt="Sparksight Event" class="main-image">
+        </div>
+        
+        <div class="description">
+            <p style="max-width: 600px; margin: 0 auto;">Sparksight is dedicated to creating diverse cultures, uncovering the flashes of thinking that cannot be judged by standardized assessment, and sharing the profound insights and unrestrained imagination of young people with everyone from a unique perspective. The theme is SDG sustainable development. Through this theatrical speech event, sustainable development could be brought into the campus and the sustainable development of society, economy and environment can be practiced in innovation and creativity. Six speakers focused on the 17 United Nations Sustainable Development Goals and engaged in their own thoughts on topics such as gender equality, hunger, poverty, and social equity.</p>
+        </div>
+        
+        <div class="stats-section">
+            <h2>Event Impact</h2>
+            <img src="ei.png" alt="Event Impact Statistics" class="stats-image" style="max-width: 80%; margin: 0 auto;">
+        </div>
+        
+        <!-- Speakers Carousel Section -->
+        <div class="carousel-section">
+            <h2>Event Speakers</h2>
+            <div class="artisan-carousel">
+                <button class="carousel-arrow prev">❮</button>
+                <div class="carousel-container" id="speakersCarousel">
+                    <!-- Carousel slides will be added by JavaScript -->
+                </div>
+                <button class="carousel-arrow next">❯</button>
+            </div>
+        </div>
+        
+        <!-- Video Section -->
+        <div class="video-section">
+            <h2>Event Highlights</h2>
+            <div class="video-container">
+                <video controls controlsList="nodownload" poster="video-poster.jpg">
+                    <source src="video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+        
+        <!-- Team Section -->
+        <div class="team-section">
+            <h2>Our Team</h2>
+            
+            <div class="team-category">
+                <h3>Leadership</h3>
+                <div class="team-members">
+                    <p><strong>Chief Planner:</strong> Kexin Zhu</p>
+                    <p><strong>Instructor:</strong> Yihong Shi</p>
+                </div>
+            </div>
+            
+            <div class="team-category">
+                <h3>Core Team</h3>
+                <div class="team-members">
+                    <p>Sizai Peng, Shixin Shang, Yichen Wang, Ziyi Li</p>
+                </div>
+            </div>
+            
+            <div class="team-category">
+                <h3>Publicity Department</h3>
+                <div class="team-members">
+                    <p>Yuhuan Wu, Yino Xu, Binying Zhu</p>
+                </div>
+            </div>
+            
+            <div class="team-category">
+                <h3>Operations Department</h3>
+                <div class="team-members">
+                    <p>Simeng Yu, Jiatai Liang</p>
+                </div>
+            </div>
+            
+            <div class="team-category">
+                <h3>Speakers</h3>
+                <div class="team-members">
+                    <p>Shen Aochuan, Sun Mingyi, Luo Hanwen,<br>Zhuang Yaohan, Yan Xinyi, Teacher Xu Jiabin</p>
+                </div>
+            </div>
+            
+            <div class="team-category">
+                <h3>Host</h3>
+                <div class="team-members">
+                    <p>Siyi Zhang</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Speakers data
+        const speakers = [
+            {
+                name: "Shen Aochuan",
+                description: "Why do humans come together? What kind of values make us appreciate each other and stir our hearts? Shen Aochuan lifted the veil of mystery over each of the United Nations' Sustainable Development goals. Tell us the mystery of this idealism shared by all mankind, It is precisely because of the concrete efforts we have made together at this moment.",
+                image: "jr5.png"
+            },
+            {
+                name: "Zhuang Yaohan",
+                description: "Regarding poverty, Zhuang Yaohan raised the following thought-provoking questions: Is poverty really that far away from us? What is the essence of poverty? What do the listless society and the new poor represent?",
+                image: "jr6.png"
+            },
+            {
+                name: "Sun Mingyi",
+                description: "Sun Mingyi hopes that in the near future, gender equality has emerged on various international and national platforms. This includes leadership positions in sports organizations, as well as world-class coaching and referee seats. The media and society jointly create a genuine and equal environment.",
+                image: "jr7.png"
+            },
+            {
+                name: "Yan Xinyi",
+                description: "Yan Xinyi believes that solving the problems of poverty and hunger seems extremely difficult. But problem-solving thinking determines: just break down the problem step by step. Seize the pain points of poverty and hunger. It is certain to propose long-term, profound and sustainable solutions.",
+                image: "jr8.png"
+            },
+            {
+                name: "Luo Hanwen",
+                description: "When reading 'You Should Fly to the Mountain Like a Bird', have you ever marveled at the power of education? Luo Hanwen believes that each of us can fly to our own mountain like a bird. She called on us to bravely invest in ourselves, even if the price is to pluck all the feathers.",
+                image: "jr9.png"
+            },
+            {
+                name: "Xu Jiabin",
+                description: "The harder you work, the more 'unequal' it becomes? Teacher Xu Jiabin hopes that on the stage of insightful views, share his thoughts on the performance system. What truly defines us is always only oneself. Everyone has their own clock, just as every flower has its own blooming period.",
+                image: "jr10.png"
+            }
+        ];
+
+        // Add speed control to video
+        function addVideoSpeedControls() {
+            const video = document.querySelector('video');
+            if (!video) return;
+
+            // Create speed control
+            const speedControl = document.querySelector('.speed-control');
+            if (!speedControl) return;
+
+            const speeds = [0.5, 0.75, 1, 1.25, 1.5, 2];
+            let currentSpeed = 1;
+
+            speedControl.addEventListener('click', (e) => {
+                e.stopPropagation();
+                currentSpeed = (currentSpeed + 1) % speeds.length;
+                video.playbackRate = speeds[currentSpeed];
+                speedControl.textContent = `Speed: ${speeds[currentSpeed]}x`;
+            });
+        }
+
+        // Carousel functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const carouselContainer = document.getElementById('speakersCarousel');
+            const prevButton = document.querySelector('.carousel-arrow.prev');
+            const nextButton = document.querySelector('.carousel-arrow.next');
+
+            let currentSlide = 0;
+            let slidesPerView = 4;
+            
+            // Calculate slides per view based on screen size
+            function updateSlidesPerView() {
+                if (window.innerWidth <= 768) {
+                    slidesPerView = 1;
+                } else {
+                    slidesPerView = 2; // Always show 2 slides per view on larger screens
+                }
+                updateCarousel();
+            }
+            
+            // Initialize carousel
+            function initCarousel() {
+                createCarousel();
+                updateSlidesPerView();
+                window.addEventListener('resize', updateSlidesPerView);
+            }
+            
+            // Create carousel slides
+            function createCarousel() {
+                carouselContainer.innerHTML = '';
+                
+                speakers.forEach((speaker, index) => {
+                    // Create slide with proper image handling
+                    const slide = document.createElement('div');
+                    slide.className = 'carousel-slide';
+                    slide.innerHTML = `
+                        <div class="artisan-image">
+                            <img src="${speaker.image}" alt="${speaker.name}" onload="this.style.opacity=1">
+                        </div>
+                        <div class="artisan-info">
+                            <h3>${speaker.name}</h3>
+                            <p>${speaker.description}</p>
+                        </div>
+                    `;
+                    // Add fade-in effect for images
+                    const img = slide.querySelector('img');
+                    img.style.opacity = '0';
+                    img.style.transition = 'opacity 0.3s ease';
+                    carouselContainer.appendChild(slide);
+                });
+                
+                updateCarousel();
+            }
+            
+            // Update carousel position
+            function updateCarousel() {
+                const slides = document.querySelectorAll('.carousel-slide');
+                if (slides.length === 0) return;
+                
+                const slideWidth = 100 / slidesPerView;
+                const maxSlide = Math.max(0, slides.length - slidesPerView);
+                currentSlide = Math.min(Math.max(0, currentSlide), maxSlide);
+                
+                slides.forEach((slide, index) => {
+                    slide.style.minWidth = `calc(${slideWidth}% - 30px)`;
+                });
+                
+                const offset = -currentSlide * (100 / slidesPerView);
+                carouselContainer.style.transform = `translateX(${offset}%)`;
+                
+                // Update arrow visibility
+                prevButton.style.display = currentSlide === 0 ? 'none' : 'flex';
+                nextButton.style.display = currentSlide >= maxSlide ? 'none' : 'flex';
+            }
+            
+            // Go to specific slide
+            function goToSlide(index) {
+                currentSlide = index;
+                updateCarousel();
+            }
+            
+            // Event listeners for navigation
+            prevButton.addEventListener('click', () => {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    updateCarousel();
+                }
+            });
+            
+            nextButton.addEventListener('click', () => {
+                const maxSlide = Math.max(0, document.querySelectorAll('.carousel-slide').length - slidesPerView);
+                if (currentSlide < maxSlide) {
+                    currentSlide++;
+                    updateCarousel();
+                }
+            });
+            
+            // Initialize carousel and video controls
+            initCarousel();
+            addVideoSpeedControls();
+            
+            // Auto-advance carousel
+            let autoSlideInterval = setInterval(() => {
+                const maxSlide = Math.max(0, document.querySelectorAll('.carousel-slide').length - slidesPerView);
+                if (currentSlide < maxSlide) {
+                    currentSlide++;
+                } else {
+                    currentSlide = 0;
+                }
+                updateCarousel();
+            }, 5000);
+            
+            // Pause auto-slide on hover
+            const carousel = document.querySelector('.artisan-carousel');
+            carousel.addEventListener('mouseenter', () => {
+                clearInterval(autoSlideInterval);
+            });
+            
+            carousel.addEventListener('mouseleave', () => {
+                autoSlideInterval = setInterval(() => {
+                    const maxSlide = Math.max(0, document.querySelectorAll('.carousel-slide').length - slidesPerView);
+                    if (currentSlide < maxSlide) {
+                        currentSlide++;
+                    } else {
+                        currentSlide = 0;
+                    }
+                    updateCarousel();
+                }, 5000);
+            });
+        });
+        // Animate progress bars on scroll into view
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressBars = document.querySelectorAll('.progress-bar');
+            
+            const animateProgressBars = () => {
+                progressBars.forEach(bar => {
+                    const width = bar.style.width;
+                    bar.style.width = '0';
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 100);
+                });
+            };
+            
+            // Run animation once when page loads
+            setTimeout(animateProgressBars, 500);
+            
+            // Also animate when scrolling to the section
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateProgressBars();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            document.querySelectorAll('.stats-section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

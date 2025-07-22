@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herwild - SHSUS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Picc Image Section */
+        .picc-section {
+            text-align: center;
+            margin: 60px 0;
+            padding: 0 20px;
+        }
+        
+        .picc-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            display: inline-block;
+        }
+        
+        .picc-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fff; /* Changed from #f7f8fa to match container */
+            color: #222;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 0;
+            box-shadow: none;
+            overflow: visible;
+            padding: 40px 40px; /* Increased padding for better spacing */
+        }
+        .back-link {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #555;
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: color 0.2s;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+        .back-link:hover {
+            color: #225e31;
+            border-color: #225e31;
+        }
+        .main-section {
+            display: flex;
+            gap: 60px;
+            align-items: flex-start;
+            margin-bottom: 80px;
+        }
+        .text-content {
+            flex: 1;
+            padding-right: 20px;
+        }
+        .text-content h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #225e31;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+        .text-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: #444;
+        }
+        .image-placeholder {
+            flex: 1;
+            height: 400px;
+            background: #f3f4f7;
+            border: 2px dashed #ccc;
+            border-radius: 12px;
+            display: flex;
+            align-items: flex-start; /* Changed from center to flex-start */
+            justify-content: center;
+            color: #888;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding-top: 80px; /* Increased padding to move content further down */
+            overflow: hidden; /* Ensure content doesn't overflow the container */
+        }
+        .stats-section {
+            background: linear-gradient(135deg, #225e31 0%, #2d7a3d 100%);
+            padding: 50px;
+            border-radius: 16px;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .picc-section {
+            text-align: center;
+            margin: 40px -20px; /* Negative margin to extend beyond container */
+            width: 100vw; /* Full viewport width */
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            padding: 0;
+            max-width: none;
+        }
+        
+        .picc-section img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 0; /* Removed border radius */
+            box-shadow: none; /* Removed shadow */
+            display: block;
+            margin: 0;
+        }
+        
+        /* Founders Section */
+        .founders-section {
+            margin: 60px auto;
+            max-width: 1000px;
+            padding: 0 20px;
+        }
+        
+        .founders-section h2 {
+            text-align: center;
+            color: #225e31;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+        }
+        
+        .founders-grid {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .founder {
+            text-align: center;
+            max-width: 300px;
+        }
+        
+        .founder-photo {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid #e0f0e0; /* Very light green border */
+            margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .founder h3 {
+            color: #333;
+            font-size: 1.3rem;
+            margin: 10px 0 5px;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+            margin: 40px auto 0; /* Removed bottom margin */
+            max-width: 600px;
+            padding: 30px;
+            background-color: #f9f9f9;
+            border-radius: 12px 12px 0 0; /* Rounded top corners only */
+            box-shadow: none; /* Removed shadow */
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .contact-section h2 {
+            color: #225e31;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .contact-section p {
+            margin: 10px 0;
+            font-size: 1.1rem;
+            color: #444;
+        }
+        
+        .contact-section a {
+            color: #2d7a3d;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .contact-section a:hover {
+            text-decoration: underline;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+        .stat-item {
+            padding: 20px;
+        }
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .stat-number.highlight {
+            font-size: 4rem;
+            color: #90ee90;
+        }
+        .stat-label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+        .photo-section {
+            margin-top: 60px;
+            text-align: center;
+        }
+        .photo-section {
+            width: 100%;
+            margin: 0;
+            padding: 20px 0;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .team-photo {
+            max-width: 90%;
+            height: auto;
+            border-radius: 0;
+            box-shadow: none;
+            object-fit: contain;
+            margin: 0 auto;
+            display: block;
+            transform: scale(1);
+            transition: transform 0.3s ease;
+            transform-origin: center;
+        }
+        
+        .team-photo:hover {
+            transform: scale(1.02);
+        }
+        
+        .carousel-section {
+            margin: 80px 0;
+            padding: 40px 0;
+            border-top: 1px solid #eee;
+        }
+        
+        .carousel-section h2 {
+            text-align: center;
+            color: #225e31;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+        }
+        
+        .artisan-carousel {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        
+        .carousel-container {
+            display: flex;
+            transition: transform 0.5s ease;
+            gap: 20px;
+            padding: 20px 0;
+        }
+        
+        .carousel-slide {
+            min-width: 280px;
+            max-width: 350px; /* Limit maximum width */
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .carousel-slide:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+        
+        .artisan-image {
+            width: 100%;
+            height: 0;
+            padding-bottom: 141.4%; /* A4 aspect ratio (h/w = 1.414) */
+            position: relative;
+            overflow: hidden;
+            background-color: #f8f9fa; /* Light gray background for missing images */
+        }
+        
+        .artisan-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        
+        .artisan-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .artisan-info h3 {
+            margin: 0 0 10px 0;
+            color: #225e31;
+            font-size: 1.2rem;
+        }
+        
+        .artisan-info p {
+            margin: 0;
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 15px;
+        }
+        
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ddd;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            transition: background-color 0.3s ease;
+        }
+        
+        .carousel-dot.active {
+            background-color: #225e31;
+        }
+        
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #225e31;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-arrow:hover {
+            background-color: #225e31;
+            color: white;
+        }
+        
+        .carousel-arrow.prev {
+            left: 20px;
+        }
+        
+        .carousel-arrow.next {
+            right: 20px;
+        }
+        .stat-number.highlight {
+            transition: transform 0.5s ease-in-out;
+        }
+        .stat-number.highlight.animate {
+            transform: scale(1.5);
+        }
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 30px;
+            }
+            .main-section {
+                flex-direction: column;
+                gap: 40px;
+            }
+            .text-content {
+                padding-right: 0;
+            }
+            .text-content h1 {
+                font-size: 2rem;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            .stat-number.highlight {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to the Homepage</a>
+        
+
+        
+        <div class="main-section">
+            <div class="text-content">
+                <h1>Herwild</h1>
+                <p>Herwild is a student-led non for-profit organization that capitalizes women's intangible cultural heritages and handicrafts with creative eco-friendly re-design techniques and branding through story-telling videos in rural Chinese villages. We have Sold to 6 enterprises as 2025 Women's Day welfare and raised $10k+ revenues with a net profit margin of 17.5% for underprivileged women. We have reinvested the profits to host handicrafts' workshop in several primary schools in Shanghai.</p>
+                
+                <p>The gift box is more than just a source of income for women in Anhui village. It has transformed a collection of isolated workshops into a connected community. Through these delicate handicrafts, we are not only aiming to alleviate women out of poverty but also present the rich culture of our hometown to the modern world.</p>
+            </div>
+            
+            <div class="image-placeholder">
+                Image Coming Soon
+            </div>
+        </div>
+        
+        <div class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number" id="revenue">$0</span>
+                    <div class="stat-label">Revenues</div>
+                </div>
+                
+                <div class="stat-item">
+                    <span class="stat-number" id="profit-margin">0%</span>
+                    <div class="stat-label">Net Profit Margin</div>
+                </div>
+                
+                <div class="stat-item">
+                    <span class="stat-number highlight" id="enterpriseNumber">6</span>
+                    <div class="stat-label">Enterprises</div>
+                </div>
+                
+                <div class="stat-item">
+                    <span class="stat-number" id="handicraftswomen">0+</span>
+                    <div class="stat-label">Collaborated with handicraftswomen</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="photo-section">
+            <img src="picc.png" alt="Herwild Team Photo" class="team-photo">
+        </div>
+        
+        <div class="carousel-section">
+            <h2>Meet Our Artisans</h2>
+            <div class="artisan-carousel">
+                <button class="carousel-arrow prev">❮</button>
+                <div class="carousel-container" id="carouselContainer">
+                    <!-- Artisan items will be added by JavaScript -->
+                </div>
+                <button class="carousel-arrow next">❯</button>
+                <div class="carousel-nav" id="carouselNav">
+                    <!-- Navigation dots will be added by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Founders Section -->
+        <div class="founders-section">
+            <h2>Founders</h2>
+            <div class="founders-grid">
+                <div class="founder">
+                    <img src="jr1.png" alt="Kexin (Cathy) Zhu" class="founder-photo">
+                    <h3>Kexin (Cathy) Zhu</h3>
+                </div>
+                <div class="founder">
+                    <img src="jr4.png" alt="Muyi (Kate) Li" class="founder-photo">
+                    <h3>Muyi (Kate) Li</h3>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contact Section -->
+        <div class="contact-section">
+            <h2>Contact</h2>
+            <p>Phone: +86 13512171180</p>
+            <p>Email: <a href="mailto:listenher2022@163.com?subject=Inquiry%20About%20Herwild">listenher2022@163.com</a></p>
+        </div>
+        </div>
+    </div>
+    
+    <script>
+        // Artisan data
+        const artisans = [
+            {
+                name: "Zhang Yulan",
+                description: "Master weaver with over 30 years of experience in traditional bamboo weaving techniques.",
+                image: "h1.png"
+            },
+            {
+                name: "Li Meifang",
+                description: "Expert in indigo dyeing, preserving ancient patterns from the Ming Dynasty.",
+                image: "h2.png"
+            },
+            {
+                name: "Wang Xiaohong",
+                description: "Specializes in intricate paper cutting, a UNESCO Intangible Cultural Heritage.",
+                image: "h3.png"
+            },
+            {
+                name: "Chen Lihua",
+                description: "Creates beautiful embroidery inspired by local flora and fauna.",
+                image: "h4.png"
+            },
+            {
+                name: "Liu Yating",
+                description: "Skilled in traditional ceramic art, using techniques passed down for generations.",
+                image: "h5.png"
+            },
+            {
+                name: "Zhao Min",
+                description: "Expert in making traditional Chinese knots and textile crafts.",
+                image: "h6.png"
+            },
+            {
+                name: "Yang Lina",
+                description: "Creates beautiful lacquerware using traditional techniques from the Song Dynasty.",
+                image: "h7.png"
+            },
+            {
+                name: "Wu Xiaoling",
+                description: "Specializes in traditional Chinese fan making, with intricate hand-painted designs.",
+                image: "h8.png"
+            }
+        ];
+
+        // Carousel functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const carouselContainer = document.getElementById('carouselContainer');
+            const carouselNav = document.getElementById('carouselNav');
+            const prevButton = document.querySelector('.carousel-arrow.prev');
+            const nextButton = document.querySelector('.carousel-arrow.next');
+            
+            let currentSlide = 0;
+            const slidesPerView = Math.min(4, Math.floor(window.innerWidth / 320));
+            
+            // Create carousel slides
+            function createCarousel() {
+                carouselContainer.innerHTML = '';
+                artisans.forEach((artisan, index) => {
+                    const slide = document.createElement('div');
+                    slide.className = 'carousel-slide';
+                    slide.innerHTML = `
+                        <div class="artisan-image">
+                            <img src="${artisan.image}" alt="${artisan.name}" onerror="this.onerror=null; this.src='placeholder.png';">
+                        </div>
+                        <div class="artisan-info">
+                            <h3>${artisan.name}</h3>
+                            <p>${artisan.description}</p>
+                        </div>
+                    `;
+                    carouselContainer.appendChild(slide);
+                });
+                
+                updateCarousel();
+            }
+            
+            // Update carousel position
+            function updateCarousel() {
+                const slideWidth = document.querySelector('.carousel-slide').offsetWidth + 20; // 20px gap
+                const offset = -currentSlide * slideWidth;
+                carouselContainer.style.transform = `translateX(${offset}px)`;
+                
+                // Update active dot
+                const dots = document.querySelectorAll('.carousel-dot');
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
+                
+                // Update button states
+                prevButton.disabled = currentSlide === 0;
+                nextButton.disabled = currentSlide >= artisans.length - slidesPerView;
+            }
+            
+            // Navigate to specific slide
+            function goToSlide(index) {
+                currentSlide = Math.max(0, Math.min(index, artisans.length - slidesPerView));
+                updateCarousel();
+            }
+            
+            // Event listeners
+            prevButton.addEventListener('click', () => {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    updateCarousel();
+                }
+            });
+            
+            nextButton.addEventListener('click', () => {
+                if (currentSlide < artisans.length - slidesPerView) {
+                    currentSlide++;
+                    updateCarousel();
+                }
+            });
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                const newSlidesPerView = Math.min(4, Math.floor(window.innerWidth / 320));
+                if (newSlidesPerView !== slidesPerView) {
+                    currentSlide = 0;
+                    updateCarousel();
+                }
+            });
+            
+            // Initialize carousel
+            createCarousel();
+        });
+        
+        // 数字计数动画函数
+        function animateNumber(element, start, end, duration, suffix = '', prefix = '') {
+            const startTime = performance.now();
+            const isPercentage = suffix === '%';
+            const isDollar = suffix.includes('$');
+            
+            function updateNumber(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // 使用缓动函数让动画更自然
+                const easeProgress = 1 - Math.pow(1 - progress, 3);
+                const current = start + (end - start) * easeProgress;
+                
+                if (isDollar) {
+                    element.textContent = '$' + Math.floor(current) + 'k+';
+                } else if (isPercentage) {
+                    element.textContent = current.toFixed(1) + '%';
+                } else {
+                    let displayValue = prefix + Math.floor(current).toString();
+                    // 处理小数（用于百分比）
+                    if (suffix === '%' && end % 1 !== 0) {
+                        displayValue = prefix + current.toFixed(1);
+                    }
+                    element.textContent = displayValue + suffix;
+                }
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateNumber);
+                }
+            }
+            
+            requestAnimationFrame(updateNumber);
+        }
+        
+        // 页面加载完成后执行动画
+        window.addEventListener('load', function() {
+            // Animate statistics numbers
+            const animateStats = () => {
+                // Revenue: $10k+
+                animateNumber(
+                    document.getElementById('revenue'),
+                    0,          // Start from 0
+                    10,         // End at 10 (for 10k)
+                    2000,       // 2 seconds duration
+                    'k+',       // Append 'k+'
+                    '$'         // Prepend '$'
+                );
+                
+                // Net Profit Margin: 17.5%
+                animateNumber(
+                    document.getElementById('profit-margin'),
+                    0,          // Start from 0
+                    17.5,       // End at 17.5
+                    2000,       // 2 seconds duration
+                    '%'         // Append '%'
+                );
+                
+                // Enterprises: 6
+                animateNumber(
+                    document.getElementById('enterprises'),
+                    0,          // Start from 0
+                    6,          // End at 6
+                    2000        // 2 seconds duration
+                );
+                
+                // Handicraftswomen: 20+
+                animateNumber(
+                    document.getElementById('handicraftswomen'),
+                    0,          // Start from 0
+                    20,         // End at 20
+                    2000,       // 2 seconds duration
+                    '+'         // Append '+'
+                );
+            };
+            
+            // Start animations
+            animateStats();
+            
+            // 立即添加放大效果
+            enterpriseNumber.classList.add('animate');
+            
+            // 3秒后移除放大效果，恢复原状
+            setTimeout(function() {
+                enterpriseNumber.classList.remove('animate');
+            }, 3000);
+            
+            // 为所有统计数字添加计数动画
+            setTimeout(function() {
+                // Revenue: $10k+
+                const revenueElement = document.querySelector('.stat-item:nth-child(1) .stat-number');
+                animateNumber(revenueElement, 0, 10, 2000, '$k+');
+                
+                // Net Profit Margin: 17.5%
+                const profitElement = document.querySelector('.stat-item:nth-child(2) .stat-number');
+                animateNumber(profitElement, 0, 17.5, 2000, '%');
+                
+                // Enterprises: 6
+                const enterpriseElement = document.querySelector('.stat-item:nth-child(3) .stat-number');
+                animateNumber(enterpriseElement, 0, 6, 2000);
+                
+                // Handicraftswomen: 20+
+                const womenElement = document.querySelector('.stat-item:nth-child(4) .stat-number');
+                animateNumber(womenElement, 0, 20, 2000, '+');
+            }, 500); // 延迟0.5秒开始计数动画
+        });
+    </script>
+</body>
+</html>

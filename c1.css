@@ -1,10 +1,10 @@
-/* Base Styles */
+
 body {
     font-family: 'Inter', sans-serif;
     color: #333;
     line-height: 1.6;
     overflow-x: hidden;
-    background: linear-gradient(135deg, #e8f5e9 0%, #ffffff 100%);
+    background: linear-gradient(135deg, #fefefe 0%, #ffffff 100%);
     min-height: 100vh;
 }
 
@@ -107,6 +107,9 @@ body {
 }
 
 .about-image img {
+    width: 100%;
+    height: auto;
+    display: block;
     max-width: 100%;
     height: auto;
     border-radius: 8px;
@@ -311,5 +314,71 @@ body {
 
 .about-container, .book-container {
     animation: fadeIn 0.8s ease-out forwards;
+}
+
+.project-card {
+    background: #fff;
+    border: 0.5px solid #e5e5e5;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.03);
+    border-radius: 8px;
+    padding: 1.2rem;
+    text-align: center;
+    transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    text-decoration: none;
+}
+
+.project-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+}
+
+.custom-gallery {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 70px;
+  margin: 0 auto;
+  margin-left:5px;
+  margin-right: 10px;
+}
+
+.custom-card {
+  background: none;
+  border: 0.2px solid #e5e5e5;
+  box-shadow: none;
+  padding: 0;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.gallery-img.pure-img {
+  width: 265px;
+  height: 265px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  display: block;
+  margin-bottom: 12px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.gallery-img.pure-img:hover {
+  transform: translateY(-18px) scale(1.04);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.13);
+}
+
+.card1 { transform: rotate(-4deg); }
+.card2 { transform: rotate(2deg); }
+.card3 { transform: rotate(-2deg); }
+.card4 { transform: rotate(3deg); }
+
+.caption {
+  font-size: 1.1rem;
+  color: #333;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+footer, .contact-info, .contact-info h3, .contact-info p {
+  color: #111 !important;
 }
 
