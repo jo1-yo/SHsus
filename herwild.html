@@ -69,7 +69,6 @@
         .text-content {
             flex: 1;
             padding-right: 20px;
-            padding-left: 120px;
         }
         .text-content h1 {
             font-size: 2.5rem;
@@ -86,22 +85,18 @@
         }
         .image-placeholder {
             flex: 1;
-            background: transparent;
-            border: none;
-            border-radius: 0;
+            height: 400px;
+            background: #f3f4f7;
+            border: 2px dashed #ccc;
+            border-radius: 12px;
             display: flex;
-            align-items: center;
+            align-items: flex-start; /* Changed from center to flex-start */
             justify-content: center;
-            padding: 0;
-            overflow: visible;
-        }
-        
-        .image-placeholder img {
-            width: 70%;
-            height: auto;
-            max-width: 70%;
-            object-fit: contain;
-            display: block;
+            color: #888;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding-top: 80px; /* Increased padding to move content further down */
+            overflow: hidden; /* Ensure content doesn't overflow the container */
         }
         .stats-section {
             background: linear-gradient(135deg, #225e31 0%, #2d7a3d 100%);
@@ -401,72 +396,6 @@
         .carousel-arrow.next {
             right: 20px;
         }
-        
-        /* Bottom Background Section */
-        .bottom-background-section {
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            background-image: url('sb2.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            overflow: hidden;
-        }
-        
-        /* Founders Section 调整位置 */
-        .bottom-background-section .founders-section {
-            background: transparent !important;
-            margin: 0 auto;
-            padding: 10px 20px 40px 20px;  /* ✅ 减少顶部padding，增加底部padding */
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;   /* ✅ 改为flex-start，让内容贴顶部 */
-            align-items: center;
-            min-height: 25vh;             /* ✅ 进一步缩小高度 */
-            max-width: 1000px;
-        }
-
-        /* Founders Grid 居中对齐 */
-        .bottom-background-section .founders-grid {
-            display: flex;
-            justify-content: center;     /* 水平居中 */
-            align-items: center;
-            gap: 60px;
-            flex-wrap: wrap;             /* 小屏自动换行 */
-            width: 100%;
-            margin: 0 auto;              /* ✅ 保证整体居中 */
-        }
-
-        /* Founder 卡片居中 */
-        .bottom-background-section .founder {
-            flex: 0 1 300px;
-            text-align: center;
-            margin: 0 auto;              /* 强制每个 founder 在列里居中 */
-        }
-
-        /* Contact Section 调整位置 + 字体颜色 */
-        .bottom-background-section .contact-section {
-            background: transparent !important;
-            margin: 10px auto 0 auto;   /* ✅ 上移 contact */
-            padding: 10px 20px 20px 20px;
-            border-radius: 0;
-            box-shadow: none;
-            border-top: none;
-            max-width: 600px;
-            text-align: center;
-            color: #000;                /* ✅ 改成黑色字体 */
-        }
-
-        .bottom-background-section .contact-section a {
-            color: #000 !important;     /* ✅ email 链接黑色 */
-            font-weight: 500;
-            text-decoration: none;
-        }
-
-        .bottom-background-section .contact-section a:hover {
-            text-decoration: underline;
-        }
         .stat-number.highlight {
             transition: transform 0.5s ease-in-out;
         }
@@ -516,7 +445,7 @@
             </div>
             
             <div class="image-placeholder">
-                <img src="sb.png" alt="Herwild Project Image">
+                Image Coming Soon
             </div>
         </div>
         
@@ -561,12 +490,7 @@
                 </div>
             </div>
             
-        </div>
-    </div>
-    
-    <!-- Bottom Background Section with Founders and Contact -->
-    <div class="bottom-background-section">
-        <!-- Founders Section -->
+            <!-- Founders Section -->
         <div class="founders-section">
             <h2>Founders</h2>
             <div class="founders-grid">
@@ -586,6 +510,7 @@
             <h2>Contact</h2>
             <p>Phone: +86 13512171180</p>
             <p>Email: <a href="mailto:listenher2022@163.com?subject=Inquiry%20About%20Herwild">listenher2022@163.com</a></p>
+        </div>
         </div>
     </div>
     
