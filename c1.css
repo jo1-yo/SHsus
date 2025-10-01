@@ -336,10 +336,11 @@ body {
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
-  gap: 70px;
+  gap: 80px;
   margin: 0 auto;
-  margin-left:5px;
-  margin-right: 10px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 40px;
 }
 
 .custom-card {
@@ -352,8 +353,8 @@ body {
 }
 
 .gallery-img.pure-img {
-  width: 265px;
-  height: 265px;
+  width: 320px;
+  height: 320px;
   object-fit: cover;
   border-radius: 10px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.08);
@@ -380,5 +381,59 @@ body {
 
 footer, .contact-info, .contact-info h3, .contact-info p {
   color: #111 !important;
+}
+
+.team-contact-section h2,
+.team-contact-section h3 {
+  color: #1b5e20 !important;
+  text-shadow: none;
+}
+
+.team-contact-section .team-section p {
+  color: #111 !important;
+  text-shadow: none;
+}
+
+.team-contact-section .contact-info h3,
+.team-contact-section .contact-info p {
+  color: #fff !important;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+}
+
+.team-contact-section {
+    background-image: url('sb2.png');
+    background-size: cover;
+    background-position: center top;
+    padding: 60px 20px;
+    color: #111;
+}
+
+.team-contact-section .team-section,
+.team-contact-section .contact-info {
+    background: transparent !important;
+}
+
+.team-contact-section .contact-info {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+/* 优化整体间距 */
+.team-contact-section .team-section {
+    margin-bottom: 30px;
+}
+
+.team-contact-section .team-subsection {
+    margin-bottom: 20px;
+}
+
+.team-contact-section .team-subsection h3 {
+    margin-bottom: 15px;
+}
+
+/* 确保项目卡片文字颜色正确 */
+.team-contact-section .caption {
+    color: #111 !important;
 }
 
