@@ -27,6 +27,7 @@
 
         .hero {
             height: 100vh;
+
             background-image: url('01.png');
             background-size: cover;
             background-position: center;
@@ -383,7 +384,101 @@
         .projects-section {
             padding: 4rem 2rem;
             background-color: #ffffff !important;
-            margin-top: 3cm; /* 下移3cm */
+            margin-top: 3cm;
+            position: relative;
+            overflow: visible;
+        }
+        
+        /* 装饰元素容器 */
+        .nature-decoration {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* 装饰元素 - 超极分散，完全避开卡片区域 */
+        .leaf-1 {
+            top: -60px;
+            left: 8%;
+            width: 80px;
+            height: 80px;
+            opacity: 0.6;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .flower-1 {
+            bottom: -110px;
+            left: 15%;
+            width: 120px;
+            height: 120px;
+            opacity: 0.65;
+            animation: sway 5s ease-in-out infinite;
+        }
+
+        .leaf-2 {
+            top: 0%;
+            left: -90px;
+            width: 100px;
+            height: 100px;
+            opacity: 0.3;
+            animation: float 7s ease-in-out infinite 1s;
+        }
+
+        .leaf-3 {
+            bottom: -80px;
+            right: -250px;
+            width: 70px;
+            height: 70px;
+            opacity: 0.3;
+            animation: float 5.5s ease-in-out infinite 0.5s;
+        }
+
+        .flower-2 {
+            top: -100px;
+            left: 95%;
+            width: 100px;
+            height: 100px;
+            opacity: 0.7;
+            animation: sway 4.5s ease-in-out infinite 1s;
+        }
+
+        .flower-3 {
+            top: 90%;
+            right: -80px;
+            width: 110px;
+            height: 110px;
+            opacity: 0.68;
+            animation: sway 5.5s ease-in-out infinite 2s;
+        }
+
+        /* 浮动动画 */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
+        }
+
+        /* 摇摆动画 */
+        @keyframes sway {
+            0%, 100% { transform: translateX(0px) rotate(0deg); }
+            50% { transform: translateX(8px) rotate(-2deg); }
+        }
+
+        /* 保证中间项目内容在装饰之上 */
+        .custom-gallery {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .custom-gallery > div {
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* 响应式：手机屏幕隐藏背景装饰 */
+        @media (max-width: 768px) {
+            .nature-decoration {
+                display: none;
+            }
         }
 
         .projects-grid {
@@ -607,7 +702,7 @@
                 <img src="lg.png?v=1.1" alt="Logo" class="logo">
                 <div class="title-wrapper">
                     <h1 class="title">Shanghai High School<br>Sustainability Initiative</h1>
-                    <p class="subtitle">Committed to a greener future through education and action</p>
+                    <p class="subtitle">Together, we turn innovation ideas into sustainable lasting impact.</p>
                 </div>
             </div>
         </div>
@@ -616,8 +711,119 @@
     <div class="about-section" style="margin: 60px 0 0 0; padding: 0; width: 100%; max-width: 100%; overflow: hidden;">
         <img src="th.png" alt="About Our Initiative" style="width: 100%; height: auto; display: block; max-width: 100%;">
     </div>
+    
 
     <section class="projects-section" style="margin: 60px auto 0 auto; padding-top: 1rem; max-width: 1200px; display: flex; flex-direction: column; align-items: center;">
+        <!-- 自然装饰元素 - 随机分布（叶子、树、花） -->
+        
+        <!-- 叶子 1 -->
+        <svg class="nature-decoration leaf-1" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#7FCD91;stop-opacity:1" />
+                    <stop offset="50%" style="stop-color:#5FB574;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#4A9D5F;stop-opacity:1" />
+                </linearGradient>
+            </defs>
+            <ellipse cx="60" cy="60" rx="30" ry="50" fill="url(#grad1)" transform="rotate(-15 60 60)"/>
+            <!-- 主茎 - 完整绘制 -->
+            <line x1="60" y1="10" x2="60" y2="110" stroke="#3A7D4A" stroke-width="2.5"/>
+            <!-- 侧脉 -->
+            <path d="M 60 25 Q 40 30, 35 45" stroke="#3A7D4A" stroke-width="1.5" fill="none"/>
+            <path d="M 60 40 Q 42 42, 38 55" stroke="#3A7D4A" stroke-width="1.5" fill="none"/>
+            <path d="M 60 55 Q 45 56, 42 68" stroke="#3A7D4A" stroke-width="1.5" fill="none"/>
+            <path d="M 60 70 Q 48 70, 45 80" stroke="#3A7D4A" stroke-width="1.5" fill="none"/>
+            <path d="M 60 85 Q 50 86, 47 95" stroke="#3A7D4A" stroke-width="1.5" fill="none"/>
+        </svg>
+
+        <!-- 叶子 2 -->
+        <svg class="nature-decoration leaf-2" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#8BD99C;stop-opacity:1" />
+                    <stop offset="50%" style="stop-color:#6ABE7D;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#52A368;stop-opacity:1" />
+                </linearGradient>
+            </defs>
+            <ellipse cx="50" cy="50" rx="25" ry="42" fill="url(#grad2)" transform="rotate(10 50 50)"/>
+            <line x1="50" y1="8" x2="50" y2="92" stroke="#3A7D4A" stroke-width="2.2"/>
+            <path d="M 50 20 Q 68 22, 73 32" stroke="#3A7D4A" stroke-width="1.3" fill="none"/>
+            <path d="M 50 35 Q 65 36, 68 46" stroke="#3A7D4A" stroke-width="1.3" fill="none"/>
+            <path d="M 50 50 Q 62 51, 65 60" stroke="#3A7D4A" stroke-width="1.3" fill="none"/>
+            <path d="M 50 65 Q 60 66, 63 74" stroke="#3A7D4A" stroke-width="1.3" fill="none"/>
+        </svg>
+
+        <!-- 花朵 1 -->
+        <svg class="nature-decoration flower-1" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+            <!-- 粉色花朵 -->
+            <ellipse cx="70" cy="40" rx="13" ry="22" fill="#F5A8C8" opacity="0.9" transform="rotate(0 70 40)"/>
+            <ellipse cx="70" cy="40" rx="13" ry="22" fill="#F5A8C8" opacity="0.9" transform="rotate(72 70 40)"/>
+            <ellipse cx="70" cy="40" rx="13" ry="22" fill="#F5A8C8" opacity="0.9" transform="rotate(144 70 40)"/>
+            <ellipse cx="70" cy="40" rx="13" ry="22" fill="#F5A8C8" opacity="0.9" transform="rotate(216 70 40)"/>
+            <ellipse cx="70" cy="40" rx="13" ry="22" fill="#F5A8C8" opacity="0.9" transform="rotate(288 70 40)"/>
+            <circle cx="70" cy="40" r="7" fill="#FFD700"/>
+            <!-- 茎 -->
+            <line x1="70" y1="53" x2="70" y2="110" stroke="#4A7C59" stroke-width="2.5"/>
+            <!-- 叶子 -->
+            <ellipse cx="55" cy="70" rx="10" ry="17" fill="#5A8A5D" opacity="0.85" transform="rotate(-30 55 70)"/>
+            <ellipse cx="85" cy="85" rx="10" ry="17" fill="#5A8A5D" opacity="0.85" transform="rotate(30 85 85)"/>
+        </svg>
+
+        <!-- 叶子 3 -->
+        <svg class="nature-decoration leaf-3" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#75C786;stop-opacity:1" />
+                    <stop offset="50%" style="stop-color:#58B26D;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#479A5B;stop-opacity:1" />
+                </linearGradient>
+            </defs>
+            <ellipse cx="55" cy="55" rx="28" ry="48" fill="url(#grad3)" transform="rotate(-20 55 55)"/>
+            <line x1="55" y1="7" x2="55" y2="103" stroke="#3A7D4A" stroke-width="2.3"/>
+            <path d="M 55 22 Q 38 24, 33 35" stroke="#3A7D4A" stroke-width="1.4" fill="none"/>
+            <path d="M 55 38 Q 40 40, 36 50" stroke="#3A7D4A" stroke-width="1.4" fill="none"/>
+            <path d="M 55 54 Q 42 55, 39 65" stroke="#3A7D4A" stroke-width="1.4" fill="none"/>
+            <path d="M 55 70 Q 44 71, 41 80" stroke="#3A7D4A" stroke-width="1.4" fill="none"/>
+            <path d="M 55 86 Q 46 87, 43 95" stroke="#3A7D4A" stroke-width="1.4" fill="none"/>
+        </svg>
+
+
+        <!-- 花朵 2 -->
+        <svg class="nature-decoration flower-2" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg">
+            <!-- 紫色花朵 -->
+            <ellipse cx="65" cy="45" rx="12" ry="20" fill="#B19CD9" opacity="0.9" transform="rotate(0 65 45)"/>
+            <ellipse cx="65" cy="45" rx="12" ry="20" fill="#B19CD9" opacity="0.9" transform="rotate(60 65 45)"/>
+            <ellipse cx="65" cy="45" rx="12" ry="20" fill="#B19CD9" opacity="0.9" transform="rotate(120 65 45)"/>
+            <ellipse cx="65" cy="45" rx="12" ry="20" fill="#B19CD9" opacity="0.9" transform="rotate(180 65 45)"/>
+            <ellipse cx="65" cy="45" rx="12" ry="20" fill="#B19CD9" opacity="0.9" transform="rotate(240 65 45)"/>
+            <ellipse cx="65" cy="45" rx="12" ry="20" fill="#B19CD9" opacity="0.9" transform="rotate(300 65 45)"/>
+            <circle cx="65" cy="45" r="6" fill="#FFD700"/>
+            <!-- 茎 -->
+            <line x1="65" y1="58" x2="65" y2="105" stroke="#4A7C59" stroke-width="2.3"/>
+            <!-- 叶子 -->
+            <ellipse cx="52" cy="75" rx="9" ry="15" fill="#5A8A5D" opacity="0.85" transform="rotate(-25 52 75)"/>
+            <ellipse cx="78" cy="88" rx="9" ry="15" fill="#5A8A5D" opacity="0.85" transform="rotate(25 78 88)"/>
+        </svg>
+
+
+        <!-- 花朵 3 -->
+        <svg class="nature-decoration flower-3" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <!-- 橙色花朵 -->
+            <ellipse cx="60" cy="38" rx="11" ry="19" fill="#FFB88C" opacity="0.9" transform="rotate(0 60 38)"/>
+            <ellipse cx="60" cy="38" rx="11" ry="19" fill="#FFB88C" opacity="0.9" transform="rotate(72 60 38)"/>
+            <ellipse cx="60" cy="38" rx="11" ry="19" fill="#FFB88C" opacity="0.9" transform="rotate(144 60 38)"/>
+            <ellipse cx="60" cy="38" rx="11" ry="19" fill="#FFB88C" opacity="0.9" transform="rotate(216 60 38)"/>
+            <ellipse cx="60" cy="38" rx="11" ry="19" fill="#FFB88C" opacity="0.9" transform="rotate(288 60 38)"/>
+            <circle cx="60" cy="38" r="6" fill="#FFD700"/>
+            <!-- 茎 -->
+            <line x1="60" y1="50" x2="60" y2="98" stroke="#4A7C59" stroke-width="2.2"/>
+            <!-- 叶子 -->
+            <ellipse cx="48" cy="68" rx="8" ry="14" fill="#5A8A5D" opacity="0.85" transform="rotate(-28 48 68)"/>
+            <ellipse cx="72" cy="80" rx="8" ry="14" fill="#5A8A5D" opacity="0.85" transform="rotate(28 72 80)"/>
+        </svg>
+
+        
+        <!-- 中间的项目卡片 -->
         <div class="custom-gallery">
             <div>
                 <a href="clubs.html">

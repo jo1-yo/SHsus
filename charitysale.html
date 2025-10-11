@@ -425,6 +425,7 @@
         // Show slide
         function showSlide(index) {
             const slides = document.querySelectorAll('.product-slide');
+            // 实现无限循环
             if (index >= slides.length) {
                 currentSlide = 0;
             } else if (index < 0) {
@@ -441,10 +442,10 @@
             updateCounter();
         }
 
-        // Update navigation buttons
+        // Update navigation buttons - 无限循环：按钮始终可用
         function updateButtons() {
-            prevBtn.disabled = currentSlide === 0;
-            nextBtn.disabled = currentSlide === products.length - 1;
+            prevBtn.disabled = false;
+            nextBtn.disabled = false;
         }
 
         // Update product counter

@@ -136,9 +136,13 @@
             <div id="carousel" style="max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; width: 100%;">
                 <div style="height: 60px;"></div>
                 <div style="position: relative; width: 100%; height: 400px; display: flex; align-items: center; justify-content: center; margin-bottom: 32px;">
-                    <span id="prevBtn" style="position: absolute; left: -32px; top: 50%; transform: translateY(-50%); font-size: 2.5rem; color: #bbb; cursor: pointer; user-select: none; transition: color 0.2s;">&#60;</span>
-                    <img id="carouselImg" src="41.png" alt="Reptile Club" style="width: 100%; height: 100%; object-fit: cover; border-radius: 0; box-shadow: 0 4px 24px rgba(0,0,0,0.10);">
-                    <span id="nextBtn" style="position: absolute; right: -32px; top: 50%; transform: translateY(-50%); font-size: 2.5rem; color: #bbb; cursor: pointer; user-select: none; transition: color 0.2s;">&#62;</span>
+                    <span id="prevBtn" style="position: absolute; left: -32px; top: 50%; transform: translateY(-50%); font-size: 2.5rem; color: #bbb; cursor: pointer; user-select: none; transition: color 0.2s; z-index: 10;">&#60;</span>
+                    
+                    <!-- 双图层无缝切换 -->
+                    <img id="img1" src="41.png" alt="Reptile Club" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 0; box-shadow: 0 4px 24px rgba(0,0,0,0.10); transition: opacity 0.5s ease-in-out; opacity: 1;">
+                    <img id="img2" src="" alt="Reptile Club" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 0; box-shadow: 0 4px 24px rgba(0,0,0,0.10); transition: opacity 0.5s ease-in-out; opacity: 0;">
+                    
+                    <span id="nextBtn" style="position: absolute; right: -32px; top: 50%; transform: translateY(-50%); font-size: 2.5rem; color: #bbb; cursor: pointer; user-select: none; transition: color 0.2s; z-index: 10;">&#62;</span>
                 </div>
                 <div style="margin-bottom: 60px; max-width: 700px; width: 100%; text-align: left; font-size: 1.08rem; color: #333; line-height: 2.1; padding: 0 0px;">
                     <strong style="font-size:1.25rem;">Reptile Club</strong><br>
@@ -151,22 +155,41 @@
     <script>
 const images = ["41.png", "42.png", "43.png", "44.png"];
 let idx = 0;
-const img = document.getElementById('carouselImg');
-document.getElementById('prevBtn').onclick = function() {
-    idx = (idx - 1 + images.length) % images.length;
-    img.src = images[idx];
-};
-document.getElementById('nextBtn').onclick = function() {
-    idx = (idx + 1) % images.length;
-    img.src = images[idx];
-};
-// 鼠标悬停时按钮变深色
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-prevBtn.onmouseenter = function(){ prevBtn.style.color = '#888'; };
-prevBtn.onmouseleave = function(){ prevBtn.style.color = '#bbb'; };
-nextBtn.onmouseenter = function(){ nextBtn.style.color = '#888'; };
-nextBtn.onmouseleave = function(){ nextBtn.style.color = '#bbb'; };
+let showingFirst = true;
+
+// 获取两个图层
+const img1 = document.getElementById("img1");
+const img2 = document.getElementById("img2");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+
+// 预加载所有图片
+images.forEach(src => {
+    const preload = new Image();
+    preload.src = src;
+});
+
+function changeImage(newIdx) {
+    const nextImg = showingFirst ? img2 : img1;
+    const currentImg = showingFirst ? img1 : img2;
+
+    nextImg.src = images[newIdx];
+    nextImg.style.opacity = '1';    // 淡入新图
+    currentImg.style.opacity = '0'; // 淡出旧图
+
+    showingFirst = !showingFirst;
+    idx = newIdx;
+}
+
+// 按钮控制 - 无限循环
+prevBtn.onclick = () => changeImage((idx - 1 + images.length) % images.length);
+nextBtn.onclick = () => changeImage((idx + 1) % images.length);
+
+// 鼠标悬停变色
+prevBtn.onmouseenter = () => prevBtn.style.color = '#888';
+prevBtn.onmouseleave = () => prevBtn.style.color = '#bbb';
+nextBtn.onmouseenter = () => nextBtn.style.color = '#888';
+nextBtn.onmouseleave = () => nextBtn.style.color = '#bbb';
 </script>
 </body>
 </html>

@@ -55,10 +55,25 @@
             transition: color 0.2s;
             border: 1px solid #e0e0e0;
             border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
         }
         .back-link:hover {
             color: #225e31;
             border-color: #225e31;
+        }
+        
+        /* Back link in hero section */
+        .hero-section .back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 4;
+            margin-bottom: 0;
+            background: linear-gradient(to bottom, rgba(250, 252, 255, 0.6), rgba(250, 252, 255, 0.1));
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            color: #555;
+            border-color: rgba(220, 220, 220, 0.3);
         }
         .main-section {
             display: flex;
@@ -499,11 +514,94 @@
                 font-size: 3rem;
             }
         }
+        
+        /* Hero Section with Background Video */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+        }
+        
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 2;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            letter-spacing: 2px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            opacity: 0.9;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <!-- Hero Section with Background Video -->
+    <section class="hero-section">
         <a href="index.html" class="back-link">← Back to the Homepage</a>
+        <iframe 
+            class="hero-video" 
+            src="https://www.youtube.com/embed/YCAAm_ljBUE?autoplay=1&mute=1&loop=1&playlist=YCAAm_ljBUE&controls=0&showinfo=0&rel=0&modestbranding=1" 
+            frameborder="0" 
+            allow="autoplay; encrypted-media" 
+            allowfullscreen>
+        </iframe>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Shanghai Sustainable Initiative</h1>
+            <p class="hero-subtitle">Empowering Women Through Traditional Craftsmanship</p>
+        </div>
+    </section>
+    
+    <div class="container">
         
 
         
@@ -634,86 +732,131 @@
             }
         ];
 
-        // Carousel functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const carouselContainer = document.getElementById('carouselContainer');
-            const carouselNav = document.getElementById('carouselNav');
-            const prevButton = document.querySelector('.carousel-arrow.prev');
-            const nextButton = document.querySelector('.carousel-arrow.next');
+        // Carousel with perfect infinite loop (supports multiple cards display)
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('carouselContainer');
+            const prev = document.querySelector('.carousel-arrow.prev');
+            const next = document.querySelector('.carousel-arrow.next');
             
-            let currentSlide = 0;
-            const slidesPerView = Math.min(4, Math.floor(window.innerWidth / 320));
-            
-            // Create carousel slides
-            function createCarousel() {
-                carouselContainer.innerHTML = '';
-                artisans.forEach((artisan, index) => {
-                    const slide = document.createElement('div');
-                    slide.className = 'carousel-slide';
-                    slide.innerHTML = `
-                        <div class="artisan-image">
-                            <img src="${artisan.image}" alt="${artisan.name}" onerror="this.onerror=null; this.src='placeholder.png';">
-                        </div>
-                        <div class="artisan-info">
-                            <h3>${artisan.name}</h3>
-                            <p>${artisan.description}</p>
-                        </div>
-                    `;
-                    carouselContainer.appendChild(slide);
-                });
-                
-                updateCarousel();
+            let currentIndex = 0;
+            let slidesPerView = 4; // 默认显示4张
+            let slideWidth = 0;
+
+            // 计算每次显示的卡片数量
+            function calculateSlidesPerView() {
+                const containerWidth = window.innerWidth;
+                if (containerWidth <= 768) {
+                    return 1;
+                } else if (containerWidth <= 1024) {
+                    return 2;
+                } else if (containerWidth <= 1400) {
+                    return 3;
+                } else {
+                    return 4;
+                }
             }
-            
-            // Update carousel position
-            function updateCarousel() {
-                const slideWidth = document.querySelector('.carousel-slide').offsetWidth + 20; // 20px gap
-                const offset = -currentSlide * slideWidth;
-                carouselContainer.style.transform = `translateX(${offset}px)`;
-                
-                // Update active dot
-                const dots = document.querySelectorAll('.carousel-dot');
-                dots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === currentSlide);
-                });
-                
-                // Update button states
-                prevButton.disabled = currentSlide === 0;
-                nextButton.disabled = currentSlide >= artisans.length - slidesPerView;
+
+            // 创建带克隆的轮播结构
+            function buildSlides() {
+                container.innerHTML = '';
+                slidesPerView = calculateSlidesPerView();
+
+                // 克隆最后 slidesPerView 张放在前面
+                for (let i = artisans.length - slidesPerView; i < artisans.length; i++) {
+                    container.appendChild(createSlide(artisans[i]));
+                }
+
+                // 正常的所有 slides
+                artisans.forEach(a => container.appendChild(createSlide(a)));
+
+                // 克隆前 slidesPerView 张放在后面
+                for (let i = 0; i < slidesPerView; i++) {
+                    container.appendChild(createSlide(artisans[i]));
+                }
+
+                // 初始化位置：跳过前面的克隆，从第一张真实卡片开始
+                currentIndex = slidesPerView;
+                updatePosition(false);
             }
-            
-            // Navigate to specific slide
-            function goToSlide(index) {
-                currentSlide = Math.max(0, Math.min(index, artisans.length - slidesPerView));
-                updateCarousel();
+
+            function createSlide(a) {
+                const slide = document.createElement('div');
+                slide.className = 'carousel-slide';
+                slide.innerHTML = `
+                    <div class="artisan-image">
+                        <img src="${a.image}" alt="${a.name}" onerror="this.src='placeholder.png'">
+                    </div>
+                    <div class="artisan-info">
+                        <h3>${a.name}</h3>
+                        <p>${a.description}</p>
+                    </div>
+                `;
+                return slide;
             }
-            
-            // Event listeners
-            prevButton.addEventListener('click', () => {
-                if (currentSlide > 0) {
-                    currentSlide--;
-                    updateCarousel();
+
+            function updatePosition(animate = true) {
+                const slides = document.querySelectorAll('.carousel-slide');
+                if (!slides.length) return;
+                
+                slideWidth = slides[0].offsetWidth + 20; // 卡片宽度 + gap
+                const offset = -slideWidth * currentIndex;
+
+                if (animate) {
+                    container.style.transition = 'transform 0.5s ease';
+                } else {
+                    container.style.transition = 'none';
+                }
+                container.style.transform = `translateX(${offset}px)`;
+            }
+
+            // 下一张（移动一个卡片宽度）
+            next.addEventListener('click', () => {
+                currentIndex++;
+                updatePosition(true);
+            });
+
+            // 上一张（移动一个卡片宽度）
+            prev.addEventListener('click', () => {
+                currentIndex--;
+                updatePosition(true);
+            });
+
+            // 监听过渡结束，检查是否需要瞬间跳转
+            container.addEventListener('transitionend', () => {
+                const slides = document.querySelectorAll('.carousel-slide');
+                const totalSlides = slides.length;
+                const realLength = artisans.length;
+
+                // 滑到了最后的克隆区域 -> 跳回到真实的开头
+                if (currentIndex >= slidesPerView + realLength) {
+                    container.style.transition = 'none';
+                    currentIndex = slidesPerView;
+                    container.style.transform = `translateX(${-slideWidth * currentIndex}px)`;
+                }
+                // 滑到了最前的克隆区域 -> 跳回到真实的末尾
+                else if (currentIndex < slidesPerView) {
+                    container.style.transition = 'none';
+                    currentIndex = slidesPerView + realLength - 1;
+                    container.style.transform = `translateX(${-slideWidth * currentIndex}px)`;
                 }
             });
-            
-            nextButton.addEventListener('click', () => {
-                if (currentSlide < artisans.length - slidesPerView) {
-                    currentSlide++;
-                    updateCarousel();
-                }
-            });
-            
-            // Handle window resize
+
+            // 窗口调整时重建轮播
+            let resizeTimeout;
             window.addEventListener('resize', () => {
-                const newSlidesPerView = Math.min(4, Math.floor(window.innerWidth / 320));
-                if (newSlidesPerView !== slidesPerView) {
-                    currentSlide = 0;
-                    updateCarousel();
-                }
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    const newSlidesPerView = calculateSlidesPerView();
+                    if (newSlidesPerView !== slidesPerView) {
+                        buildSlides();
+                    } else {
+                        updatePosition(false);
+                    }
+                }, 200);
             });
-            
-            // Initialize carousel
-            createCarousel();
+
+            // 初始化
+            buildSlides();
         });
         
         // 数字计数动画函数
