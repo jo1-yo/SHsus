@@ -389,6 +389,114 @@
             overflow: visible;
         }
         
+        /* New alternating layout styles */
+        .projects-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .project-item {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 80px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .project-item:nth-child(1) { animation-delay: 0.1s; }
+        .project-item:nth-child(2) { animation-delay: 0.2s; }
+        .project-item:nth-child(3) { animation-delay: 0.3s; }
+        .project-item:nth-child(4) { animation-delay: 0.4s; }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .project-item.reverse {
+            flex-direction: row-reverse;
+        }
+        
+        .project-image {
+            flex: 0 0 45%;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .project-image img:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+        }
+        
+        .project-content {
+            flex: 1;
+        }
+        
+        .project-content h2 {
+            font-size: 2rem;
+            color: #225e31;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .project-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 20px;
+        }
+        
+        .project-link {
+            display: inline-block;
+            color: #225e31;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.05rem;
+            transition: color 0.3s ease;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 2px;
+        }
+        
+        .project-link:hover {
+            color: #2d7a3d;
+            border-bottom: 2px solid #2d7a3d;
+        }
+        
+        @media (max-width: 768px) {
+            .project-item,
+            .project-item.reverse {
+                flex-direction: column;
+                gap: 30px;
+                margin-bottom: 60px;
+            }
+            
+            .project-image {
+                flex: 0 0 100%;
+            }
+            
+            .project-content h2 {
+                font-size: 1.6rem;
+            }
+            
+            .project-content p {
+                font-size: 1rem;
+            }
+        }
+        
         /* 装饰元素容器 */
         .nature-decoration {
             position: absolute;
@@ -548,7 +656,7 @@
         }
 
         .team-section {
-            padding: 80px 40px 40px;
+            padding: 20px 10px 80px;
             text-align: center;
             background-color: #fff;
         }
@@ -566,14 +674,14 @@
         .team-subsection h3 {
             font-size: 1.8rem;
             color: #333;
-            margin-bottom: 30px;
+            margin-bottom: 2.75rem;
             font-weight: 600;
         }
 
         .team-grid {
             display: flex;
             justify-content: center;
-            gap: 200px;
+            gap: 4rem;
             flex-wrap: wrap;
         }
 
@@ -596,8 +704,79 @@
         .team-member p {
             font-size: 1.1rem;
             font-weight: 500;
+            text-align: left;
+            line-height: 1.8;
         }
 
+        /* SDGs Footer Banner */
+        .sdgs-banner {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8f5e9 100%);
+            padding: 80px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            width: 100%;
+            margin: 0;
+        }
+        
+        .sdgs-banner-left {
+            flex: 0 0 auto;
+        }
+        
+        .sdgs-banner-left img {
+            width: auto;
+            height: 280px;
+            display: block;
+        }
+        
+        .sdgs-divider {
+            width: 4px;
+            height: 200px;
+            background-color: #225e31;
+            opacity: 0.4;
+        }
+        
+        .sdgs-banner-right {
+            flex: 0 1 auto;
+            max-width: 600px;
+        }
+        
+        .sdgs-banner-right h2 {
+            font-size: 2rem;
+            color: #225e31;
+            line-height: 1.4;
+            font-weight: 700;
+            margin: 0;
+            text-align: left;
+        }
+        
+        @media (max-width: 768px) {
+            .sdgs-banner {
+                flex-direction: column;
+                padding: 40px 20px;
+                gap: 30px;
+            }
+            
+            .sdgs-banner-left img {
+                height: 150px;
+            }
+            
+            .sdgs-divider {
+                width: 100px;
+                height: 2px;
+            }
+            
+            .sdgs-banner-right {
+                text-align: center;
+            }
+            
+            .sdgs-banner-right h2 {
+                font-size: 1.8rem;
+                text-align: center;
+            }
+        }
+        
         footer {
             background: linear-gradient(to bottom, #225e31, #1a3a24);
             color: #fff;
@@ -702,57 +881,14 @@
                 <img src="lg.png?v=1.1" alt="Logo" class="logo">
                 <div class="title-wrapper">
                     <h1 class="title">Shanghai High School<br>Sustainability Initiative</h1>
-                    <p class="subtitle">Together, we turn innovation ideas into sustainable lasting impact.</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="about-section" style="margin: 60px 0 0 0; padding: 0; width: 100%; max-width: 100%; overflow: hidden;">
-        <img src="th.png" alt="About Our Initiative" style="width: 100%; height: auto; display: block; max-width: 100%;">
-    </div>
-    
-
     <section class="projects-section" style="margin: 60px auto 0 auto; padding-top: 1rem; max-width: 1200px; display: flex; flex-direction: column; align-items: center;">
-        <!-- 自然装饰元素 - 随机分布（叶子、树、花） -->
+        <!-- 自然装饰元素 - 花朵 -->
         
-        <!-- 叶子 1 -->
-        <svg class="nature-decoration leaf-1" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#7FCD91;stop-opacity:1" />
-                    <stop offset="50%" style="stop-color:#5FB574;stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:#4A9D5F;stop-opacity:1" />
-                </linearGradient>
-            </defs>
-            <ellipse cx="60" cy="60" rx="30" ry="50" fill="url(#grad1)" transform="rotate(-15 60 60)"/>
-            <!-- 主茎 - 完整绘制 -->
-            <line x1="60" y1="10" x2="60" y2="110" stroke="#3A7D4A" stroke-width="2.5"/>
-            <!-- 侧脉 -->
-            <path d="M 60 25 Q 40 30, 35 45" stroke="#3A7D4A" stroke-width="1.5" fill="none"/>
-            <path d="M 60 40 Q 42 42, 38 55" stroke="#3A7D4A" stroke-width="1.5" fill="none"/>
-            <path d="M 60 55 Q 45 56, 42 68" stroke="#3A7D4A" stroke-width="1.5" fill="none"/>
-            <path d="M 60 70 Q 48 70, 45 80" stroke="#3A7D4A" stroke-width="1.5" fill="none"/>
-            <path d="M 60 85 Q 50 86, 47 95" stroke="#3A7D4A" stroke-width="1.5" fill="none"/>
-        </svg>
-
-        <!-- 叶子 2 -->
-        <svg class="nature-decoration leaf-2" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#8BD99C;stop-opacity:1" />
-                    <stop offset="50%" style="stop-color:#6ABE7D;stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:#52A368;stop-opacity:1" />
-                </linearGradient>
-            </defs>
-            <ellipse cx="50" cy="50" rx="25" ry="42" fill="url(#grad2)" transform="rotate(10 50 50)"/>
-            <line x1="50" y1="8" x2="50" y2="92" stroke="#3A7D4A" stroke-width="2.2"/>
-            <path d="M 50 20 Q 68 22, 73 32" stroke="#3A7D4A" stroke-width="1.3" fill="none"/>
-            <path d="M 50 35 Q 65 36, 68 46" stroke="#3A7D4A" stroke-width="1.3" fill="none"/>
-            <path d="M 50 50 Q 62 51, 65 60" stroke="#3A7D4A" stroke-width="1.3" fill="none"/>
-            <path d="M 50 65 Q 60 66, 63 74" stroke="#3A7D4A" stroke-width="1.3" fill="none"/>
-        </svg>
-
         <!-- 花朵 1 -->
         <svg class="nature-decoration flower-1" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
             <!-- 粉色花朵 -->
@@ -768,25 +904,6 @@
             <ellipse cx="55" cy="70" rx="10" ry="17" fill="#5A8A5D" opacity="0.85" transform="rotate(-30 55 70)"/>
             <ellipse cx="85" cy="85" rx="10" ry="17" fill="#5A8A5D" opacity="0.85" transform="rotate(30 85 85)"/>
         </svg>
-
-        <!-- 叶子 3 -->
-        <svg class="nature-decoration leaf-3" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#75C786;stop-opacity:1" />
-                    <stop offset="50%" style="stop-color:#58B26D;stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:#479A5B;stop-opacity:1" />
-                </linearGradient>
-            </defs>
-            <ellipse cx="55" cy="55" rx="28" ry="48" fill="url(#grad3)" transform="rotate(-20 55 55)"/>
-            <line x1="55" y1="7" x2="55" y2="103" stroke="#3A7D4A" stroke-width="2.3"/>
-            <path d="M 55 22 Q 38 24, 33 35" stroke="#3A7D4A" stroke-width="1.4" fill="none"/>
-            <path d="M 55 38 Q 40 40, 36 50" stroke="#3A7D4A" stroke-width="1.4" fill="none"/>
-            <path d="M 55 54 Q 42 55, 39 65" stroke="#3A7D4A" stroke-width="1.4" fill="none"/>
-            <path d="M 55 70 Q 44 71, 41 80" stroke="#3A7D4A" stroke-width="1.4" fill="none"/>
-            <path d="M 55 86 Q 46 87, 43 95" stroke="#3A7D4A" stroke-width="1.4" fill="none"/>
-        </svg>
-
 
         <!-- 花朵 2 -->
         <svg class="nature-decoration flower-2" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg">
@@ -822,26 +939,62 @@
             <ellipse cx="72" cy="80" rx="8" ry="14" fill="#5A8A5D" opacity="0.85" transform="rotate(28 72 80)"/>
         </svg>
 
-        
-        <!-- 中间的项目卡片 -->
-        <div class="custom-gallery">
-            <div>
-                <a href="clubs.html">
-                  <img src="p1.png" alt="Clubs in Joint Action" class="gallery-img pure-img">
-                </a>
-                <div class="caption"><a href="clubs.html" style="color:inherit;text-decoration:none;">Clubs in Joint Action</a></div>
+                <!-- Projects Container with Alternating Layout -->
+        <div class="projects-container">
+            <!-- Project 1: Coordinated Clubs & Programs (Left Image, Right Text) -->
+            <div class="project-item">
+                <div class="project-image">
+                    <a href="clubs.html">
+                        <img src="p1.png" alt="Coordinated Clubs & Programs">
+                    </a>
+                </div>
+                <div class="project-content">
+                    <h2>Coordinated Clubs & Programs</h2>
+                    <p>We coordinated 10 student clubs, including the Loomberg Finance Club and PEC Economics Club, to jointly organize lectures, workshops, Model UN conferences, and interdisciplinary forums on topics spanning economics, environment, culture, and society. By aligning the activities and schedules of these clubs, we facilitated resource sharing and collaborative management, fostering interdisciplinary learning and building a sustainable community for over 300 students.</p>
+                    <a href="clubs.html" class="project-link">Click here to see more details →</a>
+                </div>
             </div>
-            <div>
-                <a href="herwild.html" style="color:inherit;text-decoration:none;">
-                    <img src="p2.png" alt="Herwild" class="gallery-img pure-img">
-                </a>
-                <div class="caption"><a href="herwild.html" style="color:inherit;text-decoration:none;">Herwild</a></div>
+            
+            <!-- Project 2: Herwild (Right Image, Left Text) -->
+            <div class="project-item reverse">
+                <div class="project-image">
+                    <a href="herwild.html">
+                        <img src="p2.png" alt="Herwild">
+                    </a>
+                </div>
+                <div class="project-content">
+                    <h2>Herwild</h2>
+                    <p>Herwild is a student-led cultural revitalization group empowering rural Chinese women artisans. Initially focused on minority artisans in Gang Village, Anhui, we later expanded to support artisans across Hebei, Yunnan, and other regions in rural China. We provided access to formal business training and mentorship, helping these artisans translate traditional skills into modern enterprises. Through our initiatives, we promoted the growth of rural communities while bringing Chinese cultural heritage to major cities across the country.</p>
+                    <a href="herwild.html" class="project-link">Click here to see more details →</a>
+                </div>
             </div>
-            <div>
-                <a href="sparksight.html" style="color:inherit;text-decoration:none;">
-                    <img src="p3.png" alt="Sparksight" class="gallery-img pure-img">
-                </a>
-                <div class="caption"><a href="sparksight.html" style="color:inherit;text-decoration:none;">Sparksight</a></div>
+            
+            <!-- Project 3: Sparksight (Left Image, Right Text) -->
+            <div class="project-item">
+                <div class="project-image">
+                    <a href="sparksight.html">
+                        <img src="p3.png" alt="Sparksight">
+                    </a>
+                </div>
+                <div class="project-content">
+                    <h2>Sparksight</h2>
+                    <p>Sparksight is a major annual branded event at Shanghai Pinghe School. Each year, we invite six students and one teacher to deliver theatrical-style talks. This year's theme was the SDGs, with each speaker exploring sustainable development issues such as gender equality and poverty, drawing on personal experiences or current news events. The talks were insightful, engaging, and thought-provoking, attracting multiple experts and the school principal as supporting guests.</p>
+                    <a href="sparksight.html" class="project-link">Click here to see more details →</a>
+                </div>
+            </div>
+            
+            <!-- Project 4: Public Engagement Project (Right Image, Left Text) -->
+            <div class="project-item reverse">
+                <div class="project-image">
+                    <a href="engagement.html">
+                        <img src="g1.png" alt="Public Engagement Project">
+                    </a>
+                </div>
+                <div class="project-content">
+                    <h2>Public Engagement Project</h2>
+                    <p>A campus-wide initiative linking sustainability and cultural heritage through public participation. The Charity Fair showcased 100% recyclable products and cultural designs co-created with the Palace Museum Creative Line. While the Sustainable Board Games transformed environmental topics into interactive learning. Together, these activities raised over $8,500 and strengthened students' commitment to eco-conscious and culturally rooted action.</p>
+                    <a href="engagement.html" class="project-link">Click here to see more details →</a>
+                </div>
             </div>
         </div>
     </section>
@@ -850,24 +1003,19 @@
         <section class="team-section">
             <h2>Meet the Team</h2>
             <div class="team-subsection">
-                <h3>Founders</h3>
+                <h3>Co-founders</h3>
                 <div class="team-grid">
                     <div class="team-member">
                         <img src="jr1.png" alt="Kexin (Cathy) Zhu">
-                        <p>Kexin (Cathy) Zhu</p>
+                        <p><strong>Kexin (Cathy) Zhu - Project Director</strong><br/>Managed the end-to-end project planning and approval process.<br/>Co-founder of Herwild, committed to preserving traditional culture through socially impactful initiatives.<br/>President of Sparksight, fostering an inclusive platform for students to express their ideas and perspectives.</p>
                     </div>
                     <div class="team-member">
                         <img src="jr2.png" alt="Shutong (Taby) Bao">
-                        <p>Shutong (Taby) Bao</p>
+                        <p><strong>Shutong Bao — Operations Lead</strong><br/>Spearheaded clubs coordination, scheduling, and execution.<br/>Founder of PH Incubator (innovation club), providing the strategic framework and foundational support for new clubs while overseeing the execution of their key events.<br/>Led & organized charity fair; partnered with social sustainable board game initiatives.</p>
                     </div>
-                </div>
-            </div>
-            <div class="team-subsection">
-                <h3>Co-founder</h3>
-                <div class="team-grid">
                     <div class="team-member">
                         <img src="jr3.png" alt="Gong (Yvonne) Rui">
-                        <p>Gong (Yvonne) Rui</p>
+                        <p><strong>Gongrui — Design & Publicity</strong><br/>Designed visual materials and maintained project branding.<br/>Managed publicity across digital and print platform.</p>
                     </div>
                 </div>
             </div>
@@ -878,6 +1026,17 @@
             <p>Email: phincubator2024@163.com</p>
             <p>Phone: +86 13512171180</p>
         </section>
+    </div>
+    
+    <!-- SDGs Banner -->
+    <div class="sdgs-banner">
+        <div class="sdgs-banner-left">
+            <img src="final.png" alt="Sustainable Development Goals">
+        </div>
+        <div class="sdgs-divider"></div>
+        <div class="sdgs-banner-right">
+            <h2>Together, we turn innovation ideas into tangible lasting impact.</h2>
+        </div>
     </div>
     <script src="c1.js"></script>
     <script>
@@ -909,3 +1068,4 @@
     </script>
 </body>
 </html>
+

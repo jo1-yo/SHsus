@@ -336,11 +336,11 @@ body {
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
-  gap: 80px;
+  gap: 60px;
   margin: 0 auto;
   width: 100%;
-  max-width: 1200px;
-  padding: 0 40px;
+  max-width: 1400px;
+  padding: 0 20px;
 }
 
 .custom-card {
@@ -353,8 +353,8 @@ body {
 }
 
 .gallery-img.pure-img {
-  width: 320px;
-  height: 320px;
+  width: 260px;
+  height: 260px;
   object-fit: cover;
   border-radius: 10px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.08);
