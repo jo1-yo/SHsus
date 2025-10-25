@@ -129,6 +129,13 @@
             margin-left: 5px;
         }
         
+        .stat-prefix {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #a8e6a3;
+            margin-right: 8px;
+        }
+        
         .stat-item::after {
             content: '';
             position: absolute;
@@ -160,6 +167,10 @@
             }
             
             .stat-suffix {
+                font-size: 1.5rem;
+            }
+            
+            .stat-prefix {
                 font-size: 1.5rem;
             }
         }
@@ -443,6 +454,7 @@
                 <div class="stat-item">
                     <div class="stat-label">Revenues</div>
                     <div class="stat-value-container">
+                        <div class="stat-prefix">RMB</div>
                         <div class="stat-value" data-target="4000">0</div>
                         <div class="stat-suffix">+</div>
                     </div>
